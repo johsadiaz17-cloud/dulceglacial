@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bebidas - Dulce Glacial</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
+body{background:#fff0f4;color:#333;}
+
+.topbar{
+    background:#ff4d6d;
+    color:white;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:10;
+    box-shadow:0 2px 10px rgba(0,0,0,0.15);
+}
+.topbar h1{font-size:22px;}
+.topbar a{
+    color:white;
+    text-decoration:none;
+    background:rgba(255,255,255,0.2);
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:14px;
+    transition:0.3s;
+}
+.topbar a:hover{background:rgba(255,255,255,0.4);}
+
+.hero-cat{
+    height:280px;
+    background-image:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1600&q=80');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+.hero-cat h2{font-size:42px;margin-bottom:10px;}
+.hero-cat p{font-size:18px;opacity:0.9;}
+
+.categoria{
+    max-width:1200px;
+    margin:50px auto;
+    padding:0 20px;
+}
+.categoria h3{
+    font-size:28px;
+    color:#ff4d6d;
+    margin-bottom:25px;
+    border-left:6px solid #ff4d6d;
+    padding-left:15px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    transition:transform 0.3s, box-shadow 0.3s;
+    display:flex;
+    flex-direction:column;
+}
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 10px 25px rgba(255,77,109,0.25);
+}
+.card img{
+    width:100%;
+    height:210px;
+    object-fit:cover;
+}
+.card-body{
+    padding:18px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+.card-body h4{
+    font-size:19px;
+    margin-bottom:8px;
+    color:#222;
+}
+.card-body p{
+    font-size:14px;
+    color:#666;
+    line-height:1.4;
+    margin-bottom:12px;
+    flex:1;
+}
+.precio{
+    font-size:20px;
+    font-weight:bold;
+    color:#ff4d6d;
+    margin-bottom:12px;
+}
+.btn-pedir{
+    display:inline-block;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    text-align:center;
+    padding:10px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:14px;
+    transition:0.3s;
+}
+.btn-pedir:hover{background:#1da851;}
+
+footer{
+    background:#333;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:50px;
+    font-size:14px;
+}
+
+@media(max-width:600px){
+    .hero-cat h2{font-size:30px;}
+    .categoria h3{font-size:22px;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <h1>🧃 Bebidas</h1>
+    <a href="index.html">← Volver al inicio</a>
+</div>
+
+<div class="hero-cat">
+    <h2>Bebidas</h2>
+    <p>Sodas, cervezas, limonadas y más</p>
+</div>
+
+<!-- SODAS SABORIZADAS -->
+<div class="categoria">
+    <h3>Sodas Saborizadas — $12.000</h3>
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=600&q=80" alt="Paraíso Cítrico">
+            <div class="card-body">
+                <h4>Paraíso Cítrico</h4>
+                <p>Refrescante soda con toque cítrico.</p>
+                <div class="precio">$12.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20soda%20Paraíso%20Cítrico%20🍹">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=600&q=80" alt="Frutos Rojos">
+            <div class="card-body">
+                <h4>Frutos Rojos</h4>
+                <p>Soda saborizada de frutos rojos.</p>
+                <div class="precio">$12.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20soda%20de%20Frutos%20Rojos%20🍹">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=600&q=80" alt="Blue Passion">
+            <div class="card-body">
+                <h4>Blue Passion</h4>
+                <p>Soda azul con maracuyá.</p>
+                <div class="precio">$12.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20soda%20Blue%20Passion%20🍹">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- CERVEZAS -->
+<div class="categoria">
+    <h3>Cervezas</h3>
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=600&q=80" alt="Andina">
+            <div class="card-body">
+                <h4>Andina</h4>
+                <p>Cerveza Andina bien fría.</p>
+                <div class="precio">$3.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Andina%20🍺">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1618183479302-1e0aa382c36b?auto=format&fit=crop&w=600&q=80" alt="Águila Light">
+            <div class="card-body">
+                <h4>Águila Light</h4>
+                <p>Cerveza Águila Light.</p>
+                <div class="precio">$3.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Águila%20Light%20🍺">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=600&q=80" alt="Corona">
+            <div class="card-body">
+                <h4>Corona</h4>
+                <p>Cerveza Corona.</p>
+                <div class="precio">$4.500</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Corona%20🍺">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1600788886242-5c96aabe3757?auto=format&fit=crop&w=600&q=80" alt="Coronita">
+            <div class="card-body">
+                <h4>Coronita</h4>
+                <p>Cerveza Coronita.</p>
+                <div class="precio">$4.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Coronita%20🍺">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1614314434402-9c2b54c05e0e?auto=format&fit=crop&w=600&q=80" alt="Like">
+            <div class="card-body">
+                <h4>Like</h4>
+                <p>Bebida Like.</p>
+                <div class="precio">$7.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Like%20🥤">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?auto=format&fit=crop&w=600&q=80" alt="Club Colombia">
+            <div class="card-body">
+                <h4>Club Colombia</h4>
+                <p>Cerveza Club Colombia.</p>
+                <div class="precio">$4.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Club%20Colombia%20🍺">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- LIMONADAS Y OTROS -->
+<div class="categoria">
+    <h3>Limonadas y Otros</h3>
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=600&q=80" alt="Botella de Agua">
+            <div class="card-body">
+                <h4>Botella de Agua</h4>
+                <p>Agua pura bien fría.</p>
+                <div class="precio">$2.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20botella%20de%20agua%20💧">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=600&q=80" alt="Limonada Natural">
+            <div class="card-body">
+                <h4>Limonada Natural</h4>
+                <p>Limonada fresca preparada al momento.</p>
+                <div class="precio">$6.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Limonada%20Natural%20🍋">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=600&q=80" alt="Limonada de Coco">
+            <div class="card-body">
+                <h4>Limonada de Coco</h4>
+                <p>Limonada cremosa de coco.</p>
+                <div class="precio">$8.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Limonada%20de%20Coco%20🥥">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=600&q=80" alt="Adicional Michelado">
+            <div class="card-body">
+                <h4>Adicional Michelado</h4>
+                <p>Adicional de michelado para tu cerveza.</p>
+                <div class="precio">$2.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20un%20adicional%20michelado%20🍺">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    © 2026 Dulce Glacial - Todos los derechos reservados
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Granizados - Dulce Glacial</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
+body{background:#fff0f4;color:#333;}
+
+.topbar{
+    background:#ff4d6d;
+    color:white;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:10;
+    box-shadow:0 2px 10px rgba(0,0,0,0.15);
+}
+.topbar h1{font-size:22px;}
+.topbar a{
+    color:white;
+    text-decoration:none;
+    background:rgba(255,255,255,0.2);
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:14px;
+    transition:0.3s;
+}
+.topbar a:hover{background:rgba(255,255,255,0.4);}
+
+.hero-cat{
+    height:280px;
+    background-image:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=1600&q=80');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+.hero-cat h2{font-size:42px;margin-bottom:10px;}
+.hero-cat p{font-size:18px;opacity:0.9;}
+
+.categoria{
+    max-width:1200px;
+    margin:50px auto;
+    padding:0 20px;
+}
+.categoria h3{
+    font-size:28px;
+    color:#ff4d6d;
+    margin-bottom:25px;
+    border-left:6px solid #ff4d6d;
+    padding-left:15px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    transition:transform 0.3s, box-shadow 0.3s;
+    display:flex;
+    flex-direction:column;
+}
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 10px 25px rgba(255,77,109,0.25);
+}
+.card img{
+    width:100%;
+    height:210px;
+    object-fit:cover;
+}
+.card-body{
+    padding:18px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+.card-body h4{
+    font-size:19px;
+    margin-bottom:8px;
+    color:#222;
+}
+.card-body p{
+    font-size:14px;
+    color:#666;
+    line-height:1.4;
+    margin-bottom:12px;
+    flex:1;
+}
+.precio{
+    font-size:20px;
+    font-weight:bold;
+    color:#ff4d6d;
+    margin-bottom:12px;
+}
+.btn-pedir{
+    display:inline-block;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    text-align:center;
+    padding:10px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:14px;
+    transition:0.3s;
+}
+.btn-pedir:hover{background:#1da851;}
+
+footer{
+    background:#333;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:50px;
+    font-size:14px;
+}
+
+@media(max-width:600px){
+    .hero-cat h2{font-size:30px;}
+    .categoria h3{font-size:22px;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <h1>🥤 Granizados</h1>
+    <a href="index.html">← Volver al inicio</a>
+</div>
+
+<div class="hero-cat">
+    <h2>Granizados</h2>
+    <p>Refrescantes, coloridos y deliciosos</p>
+</div>
+
+<!-- GRANIZADOS 10 ONZ -->
+<div class="categoria">
+    <h3>Granizados 10 oz — $8.000</h3>
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=600&q=80" alt="Blue Mora">
+            <div class="card-body">
+                <h4>Blue Mora</h4>
+                <p>Granizado azul con sabor a mora, decorado con gomitas y dulces.</p>
+                <div class="precio">$8.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20un%20granizado%20Blue%20Mora%20🥤">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=600&q=80" alt="Red Berries">
+            <div class="card-body">
+                <h4>Red Berries</h4>
+                <p>Granizado de frutos rojos con toppings dulces.</p>
+                <div class="precio">$8.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20un%20granizado%20Red%20Berries%20🥤">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- GRANIZADOS 12 ONZ -->
+<div class="categoria">
+    <h3>Granizados 12 oz — $10.000</h3>
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=600&q=80" alt="Golden Maracuyá">
+            <div class="card-body">
+                <h4>Golden Maracuyá</h4>
+                <p>Granizado de maracuyá con toppings y dulces.</p>
+                <div class="precio">$10.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20un%20granizado%20Golden%20Maracuyá%20🥤">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=600&q=80" alt="Mango Tropical">
+            <div class="card-body">
+                <h4>Mango Tropical</h4>
+                <p>Granizado de mango con toppings tropicales.</p>
+                <div class="precio">$10.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20un%20granizado%20Mango%20Tropical%20🥤">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- SODA GLACIAL -->
+<div class="categoria">
+    <h3>Soda Glacial — $14.000</h3>
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=600&q=80" alt="Soda Glacial Maracumango">
+            <div class="card-body">
+                <h4>Soda Glacial Maracumango</h4>
+                <p>Refrescante soda con maracuyá y mango, servida con hielo y frutas.</p>
+                <div class="precio">$14.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Soda%20Glacial%20Maracumango%20🥤">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1437418747212-8d9709afab22?auto=format&fit=crop&w=600&q=80" alt="Soda Glacial Fresamango">
+            <div class="card-body">
+                <h4>Soda Glacial Fresamango</h4>
+                <p>Soda con fresa y mango, decorada con frutas frescas.</p>
+                <div class="precio">$14.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Soda%20Glacial%20Fresamango%20🥤">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=600&q=80" alt="Soda Glacial Mango">
+            <div class="card-body">
+                <h4>Soda Glacial Mango</h4>
+                <p>Soda refrescante de mango con hielo y toppings.</p>
+                <div class="precio">$14.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Soda%20Glacial%20Mango%20🥤">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    © 2026 Dulce Glacial - Todos los derechos reservados
+</footer>
+
+</body>
+</html>

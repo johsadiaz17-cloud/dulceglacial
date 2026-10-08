@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comida Rápida - Dulce Glacial</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
+body{background:#fff0f4;color:#333;}
+
+.topbar{
+    background:#ff4d6d;
+    color:white;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:10;
+    box-shadow:0 2px 10px rgba(0,0,0,0.15);
+}
+.topbar h1{font-size:22px;}
+.topbar a{
+    color:white;
+    text-decoration:none;
+    background:rgba(255,255,255,0.2);
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:14px;
+    transition:0.3s;
+}
+.topbar a:hover{background:rgba(255,255,255,0.4);}
+
+.hero-cat{
+    height:280px;
+    background-image:linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url('https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1600&q=80');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+.hero-cat h2{font-size:42px;margin-bottom:10px;}
+.hero-cat p{font-size:18px;opacity:0.9;}
+
+.categoria{
+    max-width:1200px;
+    margin:50px auto;
+    padding:0 20px;
+}
+.categoria h3{
+    font-size:28px;
+    color:#ff4d6d;
+    margin-bottom:25px;
+    border-left:6px solid #ff4d6d;
+    padding-left:15px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    transition:transform 0.3s, box-shadow 0.3s;
+    display:flex;
+    flex-direction:column;
+}
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 10px 25px rgba(255,77,109,0.25);
+}
+.card img{
+    width:100%;
+    height:210px;
+    object-fit:cover;
+}
+.card-body{
+    padding:18px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+.card-body h4{
+    font-size:19px;
+    margin-bottom:8px;
+    color:#222;
+}
+.card-body p{
+    font-size:14px;
+    color:#666;
+    line-height:1.4;
+    margin-bottom:12px;
+    flex:1;
+}
+.precio{
+    font-size:20px;
+    font-weight:bold;
+    color:#ff4d6d;
+    margin-bottom:12px;
+}
+.btn-pedir{
+    display:inline-block;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    text-align:center;
+    padding:10px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:14px;
+    transition:0.3s;
+}
+.btn-pedir:hover{background:#1da851;}
+
+footer{
+    background:#333;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:50px;
+    font-size:14px;
+}
+
+@media(max-width:600px){
+    .hero-cat h2{font-size:30px;}
+    .categoria h3{font-size:22px;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <h1>🍔 Comida Rápida</h1>
+    <a href="index.html">← Volver al inicio</a>
+</div>
+
+<div class="hero-cat">
+    <h2>Comidas Rápidas</h2>
+    <p>Hamburguesas, perros, picadas y más</p>
+</div>
+
+<!-- HAMBURGUESAS -->
+<div class="categoria">
+    <h3>Hamburguesas</h3>
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Hamburguesa">
+            <div class="card-body">
+                <h4>Hamburguesa</h4>
+                <p>Carne artesanal, queso mozzarella y cheddar, cebolla caramelizada, tomate, cebolla, lechuga crespa, tocineta, salsa de la casa, pan brioche y papas francesas.</p>
+                <div class="precio">$23.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Hamburguesa%20🍔">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433a?auto=format&fit=crop&w=600&q=80" alt="Hamburguesa Especial">
+            <div class="card-body">
+                <h4>Hamburguesa Especial</h4>
+                <p>Pepinillos, lechuga crespa, tocineta, cebolla caramelizada, cebolla roja, tomate, carne artesanal, queso mozzarella, cheddar y costeño, huevo frito, salsa de la casa, pan brioche y papas.</p>
+                <div class="precio">$26.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Hamburguesa%20Especial%20🍔">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=600&q=80" alt="Hamburguesa de Pollo">
+            <div class="card-body">
+                <h4>Hamburguesa de Pollo</h4>
+                <p>Pepinillos, lechuga crespa, tocineta, cebolla caramelizada, cebolla roja, tomate, pollo apanado, queso mozzarella, cheddar y costeño, salsa de la casa, pan brioche y papas.</p>
+                <div class="precio">$25.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Hamburguesa%20de%20Pollo%20🍔">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- PERROS -->
+<div class="categoria">
+    <h3>Perros Calientes</h3>
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1612392062798-8f9a0d4a3f1f?auto=format&fit=crop&w=600&q=80" alt="Perro Super">
+            <div class="card-body">
+                <h4>Perro Súper</h4>
+                <p>Salchicha americana, tocineta, queso mozzarella, pepinillos, queso costeño, cebolla caramelizada, papita ripio, cebolla roja, salsa de la casa y papas francesas.</p>
+                <div class="precio">$18.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20un%20Perro%20Súper%20🌭">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1612392061787-2d0d5a4c1c4a?auto=format&fit=crop&w=600&q=80" alt="Chorriperro">
+            <div class="card-body">
+                <h4>Chorriperro</h4>
+                <p>Chorizo, tocineta, queso mozzarella, cebolla caramelizada, papita ripio, cebolla roja, queso cheddar, salsa de la casa y papas a la francesa.</p>
+                <div class="precio">$25.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20un%20Chorriperro%20🌭">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1599599810694-b5b37304c041?auto=format&fit=crop&w=600&q=80" alt="Perro Sencillo">
+            <div class="card-body">
+                <h4>Perro Sencillo</h4>
+                <p>Salchicha, cebolla roja, queso mozzarella y salsa de la casa.</p>
+                <div class="precio">$11.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20un%20Perro%20Sencillo%20🌭">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- PICADAS -->
+<div class="categoria">
+    <h3>Picadas para Compartir</h3>
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=600&q=80" alt="Picada Especial">
+            <div class="card-body">
+                <h4>Picada Especial</h4>
+                <p>Papas francesas, esferas de carne, cerdo, pollo, chorizo, butifarra, lechuga crespa, Doritos, papitas ripio, tocineta, queso mozzarella, maíz, queso costeño y salsa de la casa.</p>
+                <div class="precio">Personal: $25.000<br>Para dos: $33.000<br>Familiar: $50.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Picada%20Especial%20🍟">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=600&q=80" alt="Picada para Compartir">
+            <div class="card-body">
+                <h4>Picada para Compartir</h4>
+                <p>Papas francesas, esferas de carne, cerdo, pollo, chorizo, butifarra, lechuga crespa, maduritos, papitas ripio, tocineta, maíz, queso mozzarella y salsa de la casa.</p>
+                <div class="precio">Personal: $23.000<br>Para dos: $30.000<br>Familiar: $45.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Picada%20para%20Compartir%20🍟">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- OTROS -->
+<div class="categoria">
+    <h3>Otros Platos</h3>
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1626200419199-391ae4be7a41?auto=format&fit=crop&w=600&q=80" alt="Choricascos">
+            <div class="card-body">
+                <h4>Choricascos</h4>
+                <p>4 choricascos, cascos de plátanos, salsas de la casa, pico de gallo y chorizo.</p>
+                <div class="precio">$16.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20unos%20Choricascos%20🌭">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=600&q=80" alt="Pechuga a la Plancha">
+            <div class="card-body">
+                <h4>Pechuga a la Plancha</h4>
+                <p>Papas francesas, ensalada fresca y salsas de la casa.</p>
+                <div class="precio">$22.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Pechuga%20a%20la%20Plancha%20🍗">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80" alt="Pechuga Gratinada">
+            <div class="card-body">
+                <h4>Pechuga a la Plancha Gratinada</h4>
+                <p>Papas francesas, ensalada fresca, queso mozzarella y salsas de la casa.</p>
+                <div class="precio">$25.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Pechuga%20Gratinada%20🍗">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1630431341973-02e1b662ec35?auto=format&fit=crop&w=600&q=80" alt="Salchipapa">
+            <div class="card-body">
+                <h4>Salchipapa Personal</h4>
+                <p>Papas francesas, salchicha americana, salsas de la casa y queso costeño.</p>
+                <div class="precio">$15.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Salchipapa%20Personal%20🍟">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=600&q=80" alt="Choripapa">
+            <div class="card-body">
+                <h4>Choripapa Personal</h4>
+                <p>Chorizo, papas francesas, queso costeño y salsas de la casa.</p>
+                <div class="precio">$16.000</div>
+                <a class="btn-pedir" target="_blank" href="https://wa.me/57XXXXXXXXXX?text=Hola,%20quiero%20una%20Choripapa%20Personal%20🍟">Pedir por WhatsApp</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    © 2026 Dulce Glacial - Todos los derechos reservados
+</footer>
+
+</body>
+</html>
