@@ -15,8 +15,6 @@ const SABORES = [
     { "nombre": "Melocotón", "disponible": true }
 ];
 
-// Productos que preguntan sabor al agregar
-// El número = cuántos sabores pregunta
 const PRODUCTOS_CON_SABOR = {
     "Cono 1 bola": 1,
     "Cono 2 bolas": 2,
@@ -31,3 +29,15 @@ const PRODUCTOS_CON_SABOR = {
     "Waffle Tentación": 2,
     "Candywaffles": 1
 };
+
+// Productos que ofrecen michelado (+$2.000)
+const PRODUCTOS_MICHELADO = [
+    "Cerveza Andina Light",
+    "Cerveza Águila Light",
+    "Cerveza Corona",
+    "Cerveza Coronita",
+    "Cerveza Club Colombia",
+    "Soda Paraíso Cítrico",
+    "Soda Frutos Rojos",
+    "Soda Blue Passion"
+];
