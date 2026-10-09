@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Sabores</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
+body{background:#f5f5f5;padding:30px 20px;}
+.container{max-width:600px;margin:0 auto;background:white;border-radius:20px;padding:30px;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
+h1{color:#ff4d6d;margin-bottom:10px;font-size:24px;}
+p.sub{color:#888;margin-bottom:25px;font-size:14px;}
+.flavor-row{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;border-bottom:1px solid #f0f0f0;gap:10px;}
+.flavor-row span{flex:1;font-size:16px;}
+.toggle{position:relative;width:50px;height:28px;background:#ccc;border-radius:20px;cursor:pointer;transition:0.3s;flex-shrink:0;}
+.toggle.on{background:#25D366;}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;background:white;border-radius:50%;transition:0.3s;}
+.toggle.on::after{left:25px;}
+.btn-del{background:#ff4d6d;color:white;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:18px;line-height:1;font-weight:bold;}
+.add-row{display:flex;gap:10px;margin-top:20px;}
+.add-row input{flex:1;padding:12px;border:2px solid #eee;border-radius:10px;font-size:15px;font-family:inherit;}
+.add-row input:focus{outline:none;border-color:#ff4d6d;}
+.add-row button{background:#ff4d6d;color:white;border:none;padding:12px 20px;border-radius:10px;font-weight:bold;cursor:pointer;font-family:inherit;}
+.generate-btn{background:#25D366;color:white;border:none;width:100%;padding:15px;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:25px;font-family:inherit;}
+.generate-btn:hover{background:#1da851;}
+.output{margin-top:20px;padding:15px;background:#f9f9f9;border-radius:10px;border:2px dashed #ddd;font-family:monospace;font-size:12px;white-space:pre;overflow-x:auto;display:none;max-height:400px;overflow-y:auto;}
+.output.show{display:block;}
+.copy-btn{background:#333;color:white;border:none;width:100%;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;margin-top:10px;font-family:inherit;display:none;}
+.copy-btn.show{display:block;}
+.instructions{background:#fff8e1;border-left:4px solid #ffc107;padding:15px;margin-top:20px;border-radius:8px;font-size:13px;line-height:1.6;color:#665;}
+code{background:#eee;padding:2px 6px;border-radius:4px;font-family:monospace;}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🍦 Panel de Sabores</h1>
+    <p class="sub">Administra los sabores disponibles (solo tú)</p>
+
+    <div id="flavors-container"></div>
+
+    <div class="add-row">
+        <input type="text" id="new-flavor" placeholder="Nuevo sabor..." onkeypress="if(event.key==='Enter')addFlavor()">
+        <button onclick="addFlavor()">+ Añadir</button>
+    </div>
+
+    <button class="generate-btn" onclick="generateCode()">📥 Generar código para pegar en GitHub</button>
+    
+    <div class="output" id="output"></div>
+    <button class="copy-btn" id="copy-btn" onclick="copyCode()">📋 Copiar código</button>
+
+    <div class="instructions">
+        <strong>📌 Cómo actualizar los sabores:</strong><br>
+        1. Cambia los sabores arriba<br>
+        2. Clic en <strong>"Generar código"</strong><br>
+        3. Clic en <strong>"Copiar código"</strong><br>
+        4. Ve a GitHub → <code>sabores.js</code> → ✏️ Editar<br>
+        5. Ctrl+A y pega el nuevo código<br>
+        6. Commit changes ✅
+    </div>
+</div>
+
+<script>
+let flavors = [
+    { nombre: "Chocolate", disponible: true },
+    { nombre: "Vainilla", disponible: true },
+    { nombre: "Fresa", disponible: true },
+    { nombre: "Mango", disponible: true },
+    { nombre: "Maracuyá", disponible: true },
+    { nombre: "Mora", disponible: true },
+    { nombre: "Limón", disponible: true },
+    { nombre: "Coco", disponible: true },
+    { nombre: "Arequipe", disponible: true },
+    { nombre: "Banano", disponible: true }
+];
+
+const saved = localStorage.getItem('adminFlavors');
+if (saved) { try { flavors = JSON.parse(saved); } catch(e) {} }
+
+function saveLocal() { localStorage.setItem('adminFlavors', JSON.stringify(flavors)); }
+
+function render() {
+    const container = document.getElementById('flavors-container');
+    if (flavors.length === 0) {
+        container.innerHTML = '<p style="text-align:center;color:#999;padding:20px;">No hay sabores. Añade uno abajo.</p>';
+        return;
+    }
+    container.innerHTML = flavors.map((f, i) =>
+        '<div class="flavor-row">' +
+            '<span>' + f.nombre + '</span>' +
+            '<div class="toggle ' + (f.disponible ? 'on' : '') + '" onclick="toggleFlavor(' + i + ')"></div>' +
+            '<button class="btn-del" onclick="deleteFlavor(' + i + ')">×</button>' +
+        '</div>'
+    ).join('');
+}
+
+function toggleFlavor(i) { flavors[i].disponible = !flavors[i].disponible; saveLocal(); render(); }
+
+function deleteFlavor(i) {
+    if (confirm('¿Eliminar "' + flavors[i].nombre + '"?')) {
+        flavors.splice(i, 1);
+        saveLocal();
+        render();
+    }
+}
+
+function addFlavor() {
+    const input = document.getElementById('new-flavor');
+    const name = input.value.trim();
+    if (!name) return;
+    if (flavors.some(f => f.nombre.toLowerCase() === name.toLowerCase())) {
+        alert('Ese sabor ya existe');
+        return;
+    }
+    flavors.push({ nombre: name, disponible: true });
+    input.value = '';
+    saveLocal();
+    render();
+}
+
+function generateCode() {
+    const code = '// ========================================\n' +
+'// CONFIGURACIÓN DE SABORES - DULCE GLACIAL\n' +
+'// ========================================\n\n' +
+'const SABORES = ' + JSON.stringify(flavors, null, 4) + ';\n\n' +
+'const PRODUCTOS_CON_SABOR = [\n    "Cono 1 bola",\n    "Cono 2 bolas"\n];\n';
+    const out = document.getElementById('output');
+    out.textContent = code;
+    out.classList.add('show');
+    document.getElementById('copy-btn').classList.add('show');
+}
+
+function copyCode() {
+    const code = document.getElementById('output').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = '✅ ¡Copiado!';
+        setTimeout(() => btn.textContent = '📋 Copiar código', 2000);
+    });
+}
+
+render();
+</script>
+</body>
+</html>
