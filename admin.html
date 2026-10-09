@@ -35,6 +35,8 @@ p.sub{color:#888;margin-bottom:20px;font-size:14px;}
 .instructions{background:#fff8e1;border-left:4px solid #ffc107;padding:15px;margin-top:20px;border-radius:8px;font-size:13px;line-height:1.6;color:#665;}
 code{background:#eee;padding:2px 6px;border-radius:4px;font-family:monospace;}
 .category-title{background:#f0f0f0;padding:10px 15px;font-weight:bold;color:#333;margin-top:15px;border-radius:8px;font-size:14px;}
+.search-box{width:100%;padding:10px 15px;border:2px solid #eee;border-radius:10px;font-size:14px;font-family:inherit;margin-bottom:15px;}
+.search-box:focus{outline:none;border-color:#ff4d6d;}
 </style>
 </head>
 <body>
@@ -72,6 +74,7 @@ code{background:#eee;padding:2px 6px;border-radius:4px;font-family:monospace;}
     <!-- TAB PRODUCTOS -->
     <div id="tab-productos" style="display:none;">
         <p class="sub">Marca los productos que estén AGOTADOS</p>
+        <input type="text" id="search-input" class="search-box" placeholder="🔍 Buscar producto..." oninput="renderProducts()">
         <div id="products-container"></div>
         <button class="generate-btn" onclick="generateProductsCode()">📥 Generar código disponibilidad.js</button>
         <div class="output" id="output-products"></div>
@@ -160,13 +163,25 @@ const PRODUCTOS = {
         "Soda Paraíso Cítrico", "Soda Frutos Rojos", "Soda Blue Passion"
     ],
     "🍺 Bebidas - Cervezas": [
-        "Cerveza Andina", "Cerveza Águila Light", "Cerveza Corona",
+        "Cerveza Andina Light", "Cerveza Águila Light", "Cerveza Corona",
         "Cerveza Coronita", "Like", "Cerveza Club Colombia"
     ],
-    "🥤 Bebidas - Limonadas": [
-        "Botella de Agua", "Limonada Natural", "Limonada de Coco", "Adicional Michelado"
+    "🥤 Bebidas - Limonadas y Otros": [
+        "Botella de Agua", "Limonada Natural", "Cerezada"
     ]
 };
+
+// Productos que ofrecen michelado (+$2.000)
+const PRODUCTOS_MICHELADO = [
+    "Cerveza Andina Light",
+    "Cerveza Águila Light",
+    "Cerveza Corona",
+    "Cerveza Coronita",
+    "Cerveza Club Colombia",
+    "Soda Paraíso Cítrico",
+    "Soda Frutos Rojos",
+    "Soda Blue Passion"
+];
 
 // Cargar estado guardado
 let agotados = [];
@@ -230,10 +245,13 @@ function addFlavor() {
 // ============ PRODUCTOS RENDER ============
 function renderProducts() {
     const container = document.getElementById('products-container');
+    const search = (document.getElementById('search-input').value || '').toLowerCase();
     let html = '';
     for (const [category, items] of Object.entries(PRODUCTOS)) {
+        const filtered = search ? items.filter(n => n.toLowerCase().includes(search)) : items;
+        if (filtered.length === 0) continue;
         html += '<div class="category-title">' + category + '</div>';
-        items.forEach(name => {
+        filtered.forEach(name => {
             const isAgotado = agotados.includes(name);
             html += '<div class="flavor-row">' +
                 '<span>' + name + '</span>' +
@@ -241,6 +259,7 @@ function renderProducts() {
             '</div>';
         });
     }
+    if (!html) html = '<p style="text-align:center;color:#999;padding:20px;">No se encontraron productos.</p>';
     container.innerHTML = html;
 }
 
@@ -258,7 +277,9 @@ function generateFlavorsCode() {
 '// CONFIGURACIÓN DE SABORES - DULCE GLACIAL\n' +
 '// ========================================\n\n' +
 'const SABORES = ' + JSON.stringify(flavors, null, 4) + ';\n\n' +
-'const PRODUCTOS_CON_SABOR = ' + JSON.stringify(PRODUCTOS_SABOR, null, 4) + ';\n';
+'const PRODUCTOS_CON_SABOR = ' + JSON.stringify(PRODUCTOS_SABOR, null, 4) + ';\n\n' +
+'// Productos que ofrecen michelado (+$2.000)\n' +
+'const PRODUCTOS_MICHELADO = ' + JSON.stringify(PRODUCTOS_MICHELADO, null, 4) + ';\n';
     const out = document.getElementById('output-flavors');
     out.textContent = code;
     out.classList.add('show');
