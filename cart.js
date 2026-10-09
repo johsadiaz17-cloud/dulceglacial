@@ -7,6 +7,18 @@ let tempProduct = null;
 let flavorCount = 0;
 let selectedFlavors = [];
 
+// Productos que ofrecen michelado (+$2.000) - LISTA DIRECTA
+const PRODUCTOS_MICHELADO = [
+    "Cerveza Andina Light",
+    "Cerveza Águila Light",
+    "Cerveza Corona",
+    "Cerveza Coronita",
+    "Cerveza Club Colombia",
+    "Soda Paraíso Cítrico",
+    "Soda Frutos Rojos",
+    "Soda Blue Passion"
+];
+
 const LISTA_DESECHABLE = [
     "Glacial Mango", "Glacial Fresa", "Glacial Banana", "Fusión Chocolate",
     "Brownie con Helado", "Banana Split", "Copa Galaxi", "Copa Oreo",
@@ -39,6 +51,10 @@ function isAgotado(name) {
     return AGOTADOS.includes(name) || AGOTADOS.includes(baseName);
 }
 
+function esBebidaMichelable(name) {
+    return PRODUCTOS_MICHELADO.includes(name);
+}
+
 function addToCart(name, price) {
     if (isAgotado(name)) {
         showToast('Este producto está agotado 🚫');
@@ -54,11 +70,6 @@ function addToCart(name, price) {
         return;
     }
     addDirectToCart(name, price);
-}
-
-function esBebidaMichelable(name) {
-    if (typeof PRODUCTOS_MICHELADO === 'undefined') return false;
-    return PRODUCTOS_MICHELADO.includes(name);
 }
 
 function openMicheladoModal() {
