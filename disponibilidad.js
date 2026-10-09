@@ -1,10 +1,13 @@
 // ========================================
 // DISPONIBILIDAD - DULCE GLACIAL
 // ========================================
-// Los productos en esta lista aparecerán como AGOTADOS
-// Edítalos desde admin.html
+// Productos AGOTADOS (no se pueden pedir)
 
 const AGOTADOS = [
-    // "Copa Oreo",
-    // "Malteada de Fresa"
+    "Glacial Fresa",
+    "Glacial Banana",
+    "Botella de Agua",
+    "Limonada Natural",
+    "Cerveza Club Colombia",
+    "Like"
 ];
