@@ -3,19 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin - Sabores</title>
+<title>Admin - Dulce Glacial</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
 body{background:#f5f5f5;padding:30px 20px;}
-.container{max-width:600px;margin:0 auto;background:white;border-radius:20px;padding:30px;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
+.container{max-width:700px;margin:0 auto;background:white;border-radius:20px;padding:30px;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
 h1{color:#ff4d6d;margin-bottom:10px;font-size:24px;}
-p.sub{color:#888;margin-bottom:25px;font-size:14px;}
+p.sub{color:#888;margin-bottom:20px;font-size:14px;}
+.tabs{display:flex;gap:10px;margin-bottom:25px;border-bottom:2px solid #eee;}
+.tab{background:none;border:none;padding:12px 20px;font-size:15px;font-weight:bold;cursor:pointer;color:#999;font-family:inherit;border-bottom:3px solid transparent;margin-bottom:-2px;transition:0.3s;}
+.tab.active{color:#ff4d6d;border-bottom-color:#ff4d6d;}
 .flavor-row{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;border-bottom:1px solid #f0f0f0;gap:10px;}
-.flavor-row span{flex:1;font-size:16px;}
+.flavor-row span{flex:1;font-size:15px;}
 .toggle{position:relative;width:50px;height:28px;background:#ccc;border-radius:20px;cursor:pointer;transition:0.3s;flex-shrink:0;}
 .toggle.on{background:#25D366;}
+.toggle.off-red{background:#e63956;}
 .toggle::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;background:white;border-radius:50%;transition:0.3s;}
 .toggle.on::after{left:25px;}
+.toggle.off-red::after{left:25px;}
 .btn-del{background:#ff4d6d;color:white;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:18px;line-height:1;font-weight:bold;}
 .add-row{display:flex;gap:10px;margin-top:20px;}
 .add-row input{flex:1;padding:12px;border:2px solid #eee;border-radius:10px;font-size:15px;font-family:inherit;}
@@ -29,38 +34,62 @@ p.sub{color:#888;margin-bottom:25px;font-size:14px;}
 .copy-btn.show{display:block;}
 .instructions{background:#fff8e1;border-left:4px solid #ffc107;padding:15px;margin-top:20px;border-radius:8px;font-size:13px;line-height:1.6;color:#665;}
 code{background:#eee;padding:2px 6px;border-radius:4px;font-family:monospace;}
+.category-title{background:#f0f0f0;padding:10px 15px;font-weight:bold;color:#333;margin-top:15px;border-radius:8px;font-size:14px;}
 </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🍦 Panel de Sabores</h1>
-    <p class="sub">Administra los sabores disponibles (solo tú)</p>
+    <h1>🍦 Panel de Administración</h1>
+    <p class="sub">Administra sabores y disponibilidad de productos</p>
 
-    <div id="flavors-container"></div>
-
-    <div class="add-row">
-        <input type="text" id="new-flavor" placeholder="Nuevo sabor..." onkeypress="if(event.key==='Enter')addFlavor()">
-        <button onclick="addFlavor()">+ Añadir</button>
+    <div class="tabs">
+        <button id="tab-btn-sabores" class="tab active" onclick="switchTab('sabores')">🍨 Sabores</button>
+        <button id="tab-btn-productos" class="tab" onclick="switchTab('productos')">📦 Productos</button>
     </div>
 
-    <button class="generate-btn" onclick="generateCode()">📥 Generar código para pegar en GitHub</button>
-    
-    <div class="output" id="output"></div>
-    <button class="copy-btn" id="copy-btn" onclick="copyCode()">📋 Copiar código</button>
+    <!-- TAB SABORES -->
+    <div id="tab-sabores">
+        <div id="flavors-container"></div>
+        <div class="add-row">
+            <input type="text" id="new-flavor" placeholder="Nuevo sabor..." onkeypress="if(event.key==='Enter')addFlavor()">
+            <button onclick="addFlavor()">+ Añadir</button>
+        </div>
+        <button class="generate-btn" onclick="generateFlavorsCode()">📥 Generar código sabores.js</button>
+        <div class="output" id="output-flavors"></div>
+        <button class="copy-btn" id="copy-btn-flavors" onclick="copyCode('output-flavors','copy-btn-flavors')">📋 Copiar código</button>
+        <div class="instructions">
+            <strong>📌 Cómo actualizar los sabores:</strong><br>
+            1. Cambia los sabores arriba<br>
+            2. Clic en <strong>"Generar código"</strong><br>
+            3. Clic en <strong>"Copiar código"</strong><br>
+            4. Ve a GitHub → <code>sabores.js</code> → ✏️ Editar<br>
+            5. Ctrl+A y pega el nuevo código<br>
+            6. Commit changes ✅
+        </div>
+    </div>
 
-    <div class="instructions">
-        <strong>📌 Cómo actualizar los sabores:</strong><br>
-        1. Cambia los sabores arriba<br>
-        2. Clic en <strong>"Generar código"</strong><br>
-        3. Clic en <strong>"Copiar código"</strong><br>
-        4. Ve a GitHub → <code>sabores.js</code> → ✏️ Editar<br>
-        5. Ctrl+A y pega el nuevo código<br>
-        6. Commit changes ✅
+    <!-- TAB PRODUCTOS -->
+    <div id="tab-productos" style="display:none;">
+        <p class="sub">Marca los productos que estén AGOTADOS</p>
+        <div id="products-container"></div>
+        <button class="generate-btn" onclick="generateProductsCode()">📥 Generar código disponibilidad.js</button>
+        <div class="output" id="output-products"></div>
+        <button class="copy-btn" id="copy-btn-products" onclick="copyCode('output-products','copy-btn-products')">📋 Copiar código</button>
+        <div class="instructions">
+            <strong>📌 Cómo actualizar los agotados:</strong><br>
+            1. Activa/desactiva los productos arriba (verde = disponible, rojo = agotado)<br>
+            2. Clic en <strong>"Generar código"</strong><br>
+            3. Clic en <strong>"Copiar código"</strong><br>
+            4. Ve a GitHub → <code>disponibilidad.js</code> → ✏️ Editar<br>
+            5. Ctrl+A y pega el nuevo código<br>
+            6. Commit changes ✅
+        </div>
     </div>
 </div>
 
 <script>
+// ============ SABORES ============
 let flavors = [
     { nombre: "Vainilla", disponible: true },
     { nombre: "Ron con Pasas", disponible: true },
@@ -89,12 +118,73 @@ const PRODUCTOS_SABOR = {
     "Candywaffles": 1
 };
 
-const saved = localStorage.getItem('adminFlavors');
-if (saved) { try { flavors = JSON.parse(saved); } catch(e) {} }
+// ============ PRODUCTOS ============
+const PRODUCTOS = {
+    "🍨 Helados - Copas y Postres": [
+        "Glacial Mango", "Glacial Fresa", "Glacial Banana", "Fusión Chocolate",
+        "Brownie con Helado", "Banana Split", "Copa Galaxi", "Copa Oreo",
+        "Copa Milo", "Gusanito", "Buhito", "Pulpito"
+    ],
+    "🍓 Helados - Ensaladas": [
+        "Frutiglacial Grande", "Frutiglacial Pequeña", "Fresabanana"
+    ],
+    "🧇 Helados - Waffles": [
+        "Waffle Tentación", "Candywaffles"
+    ],
+    "🥤 Helados - Malteadas": [
+        "Malteada Celestial de Café", "Malteada de Fresa", "Malteada de Chocolate"
+    ],
+    "🍦 Helados - Conos": [
+        "Cono 1 bola", "Cono 2 bolas"
+    ],
+    "🍔 Comida - Hamburguesas": [
+        "Hamburguesa", "Hamburguesa Especial", "Hamburguesa de Pollo"
+    ],
+    "🌭 Comida - Perros": [
+        "Perro Súper", "Chorriperro", "Perro Sencillo"
+    ],
+    "🍟 Comida - Picadas": [
+        "Picada Especial Personal", "Picada Especial Para dos", "Picada Especial Familiar",
+        "Picada para Compartir Personal", "Picada para Compartir Para dos", "Picada para Compartir Familiar"
+    ],
+    "🍗 Comida - Otros": [
+        "Choricascos", "Pechuga a la Plancha", "Pechuga Gratinada",
+        "Salchipapa Personal", "Choripapa Personal"
+    ],
+    "🥤 Granizados": [
+        "Granizado Blue Mora 10oz", "Granizado Red Berries 10oz",
+        "Granizado Golden Maracuyá 12oz", "Granizado Mango Tropical 12oz",
+        "Soda Glacial Maracumango", "Soda Glacial Fresamango", "Soda Glacial Mango"
+    ],
+    "🧃 Bebidas - Sodas": [
+        "Soda Paraíso Cítrico", "Soda Frutos Rojos", "Soda Blue Passion"
+    ],
+    "🍺 Bebidas - Cervezas": [
+        "Cerveza Andina", "Cerveza Águila Light", "Cerveza Corona",
+        "Cerveza Coronita", "Like", "Cerveza Club Colombia"
+    ],
+    "🥤 Bebidas - Limonadas": [
+        "Botella de Agua", "Limonada Natural", "Limonada de Coco", "Adicional Michelado"
+    ]
+};
 
-function saveLocal() { localStorage.setItem('adminFlavors', JSON.stringify(flavors)); }
+// Cargar estado guardado
+let agotados = [];
+const savedFlavors = localStorage.getItem('adminFlavors');
+if (savedFlavors) { try { flavors = JSON.parse(savedFlavors); } catch(e) {} }
+const savedAgotados = localStorage.getItem('adminAgotados');
+if (savedAgotados) { try { agotados = JSON.parse(savedAgotados); } catch(e) {} }
 
-function render() {
+// ============ TABS ============
+function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-btn-' + tab).classList.add('active');
+    document.getElementById('tab-sabores').style.display = tab === 'sabores' ? 'block' : 'none';
+    document.getElementById('tab-productos').style.display = tab === 'productos' ? 'block' : 'none';
+}
+
+// ============ SABORES RENDER ============
+function renderFlavors() {
     const container = document.getElementById('flavors-container');
     if (flavors.length === 0) {
         container.innerHTML = '<p style="text-align:center;color:#999;padding:20px;">No hay sabores. Añade uno abajo.</p>';
@@ -109,13 +199,17 @@ function render() {
     ).join('');
 }
 
-function toggleFlavor(i) { flavors[i].disponible = !flavors[i].disponible; saveLocal(); render(); }
+function toggleFlavor(i) {
+    flavors[i].disponible = !flavors[i].disponible;
+    localStorage.setItem('adminFlavors', JSON.stringify(flavors));
+    renderFlavors();
+}
 
 function deleteFlavor(i) {
     if (confirm('¿Eliminar "' + flavors[i].nombre + '"?')) {
         flavors.splice(i, 1);
-        saveLocal();
-        render();
+        localStorage.setItem('adminFlavors', JSON.stringify(flavors));
+        renderFlavors();
     }
 }
 
@@ -129,32 +223,72 @@ function addFlavor() {
     }
     flavors.push({ nombre: name, disponible: true });
     input.value = '';
-    saveLocal();
-    render();
+    localStorage.setItem('adminFlavors', JSON.stringify(flavors));
+    renderFlavors();
 }
 
-function generateCode() {
+// ============ PRODUCTOS RENDER ============
+function renderProducts() {
+    const container = document.getElementById('products-container');
+    let html = '';
+    for (const [category, items] of Object.entries(PRODUCTOS)) {
+        html += '<div class="category-title">' + category + '</div>';
+        items.forEach(name => {
+            const isAgotado = agotados.includes(name);
+            html += '<div class="flavor-row">' +
+                '<span>' + name + '</span>' +
+                '<div class="toggle ' + (isAgotado ? 'off-red' : 'on') + '" onclick="toggleProduct(\'' + name.replace(/'/g, "\\'") + '\')"></div>' +
+            '</div>';
+        });
+    }
+    container.innerHTML = html;
+}
+
+function toggleProduct(name) {
+    const idx = agotados.indexOf(name);
+    if (idx > -1) agotados.splice(idx, 1);
+    else agotados.push(name);
+    localStorage.setItem('adminAgotados', JSON.stringify(agotados));
+    renderProducts();
+}
+
+// ============ GENERAR CÓDIGO ============
+function generateFlavorsCode() {
     const code = '// ========================================\n' +
 '// CONFIGURACIÓN DE SABORES - DULCE GLACIAL\n' +
 '// ========================================\n\n' +
 'const SABORES = ' + JSON.stringify(flavors, null, 4) + ';\n\n' +
 'const PRODUCTOS_CON_SABOR = ' + JSON.stringify(PRODUCTOS_SABOR, null, 4) + ';\n';
-    const out = document.getElementById('output');
+    const out = document.getElementById('output-flavors');
     out.textContent = code;
     out.classList.add('show');
-    document.getElementById('copy-btn').classList.add('show');
+    document.getElementById('copy-btn-flavors').classList.add('show');
 }
 
-function copyCode() {
-    const code = document.getElementById('output').textContent;
+function generateProductsCode() {
+    const code = '// ========================================\n' +
+'// DISPONIBILIDAD - DULCE GLACIAL\n' +
+'// ========================================\n' +
+'// Productos AGOTADOS (no se pueden pedir)\n\n' +
+'const AGOTADOS = ' + JSON.stringify(agotados, null, 4) + ';\n';
+    const out = document.getElementById('output-products');
+    out.textContent = code;
+    out.classList.add('show');
+    document.getElementById('copy-btn-products').classList.add('show');
+}
+
+function copyCode(outputId, btnId) {
+    const code = document.getElementById(outputId).textContent;
     navigator.clipboard.writeText(code).then(() => {
-        const btn = document.getElementById('copy-btn');
+        const btn = document.getElementById(btnId);
+        const original = btn.textContent;
         btn.textContent = '✅ ¡Copiado!';
-        setTimeout(() => btn.textContent = '📋 Copiar código', 2000);
+        setTimeout(() => btn.textContent = original, 2000);
     });
 }
 
-render();
+renderFlavors();
+renderProducts();
 </script>
 </body>
 </html>
