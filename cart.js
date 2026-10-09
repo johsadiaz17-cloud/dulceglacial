@@ -4,17 +4,26 @@
 
 let cart = JSON.parse(localStorage.getItem('cart') || '[]');
 let tempProduct = null;
+let flavorCount = 0;
+let selectedFlavors = [];
 
 function saveCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 function addToCart(name, price) {
-    if (typeof PRODUCTOS_CON_SABOR !== 'undefined' && PRODUCTOS_CON_SABOR.includes(name)) {
-        openFlavorModal(name, price);
+    if (typeof PRODUCTOS_CON_SABOR !== 'undefined' && PRODUCTOS_CON_SABOR[name]) {
+        startFlavorSelection(name, price);
         return;
     }
     addDirectToCart(name, price);
+}
+
+function startFlavorSelection(name, price) {
+    tempProduct = { name: name, price: price };
+    flavorCount = PRODUCTOS_CON_SABOR[name];
+    selectedFlavors = [];
+    openFlavorModal();
 }
 
 function addDirectToCart(name, price, flavor) {
@@ -28,37 +37,59 @@ function addDirectToCart(name, price, flavor) {
     showToast(fullName + ' agregado 🛒');
 }
 
-function openFlavorModal(name, price) {
-    tempProduct = { name: name, price: price };
+function openFlavorModal() {
     const modal = document.getElementById('flavor-modal');
     const flavorsList = document.getElementById('flavors-list');
     const title = document.getElementById('flavor-title');
-    if (!modal || !flavorsList) return;
+    if (!modal || !flavorsList || !tempProduct) return;
 
-    title.textContent = 'Elige el sabor de: ' + name;
-    const disponibles = (typeof SABORES !== 'undefined' ? SABORES : []).filter(s => s.disponible);
-    
-    if (disponibles.length === 0) {
-        flavorsList.innerHTML = '<p style="text-align:center;color:#999;padding:20px;">No hay sabores disponibles 😔</p>';
+    let titleText = '';
+    if (flavorCount === 1) {
+        titleText = 'Elige el sabor de: ' + tempProduct.name;
     } else {
-        flavorsList.innerHTML = disponibles.map(s => 
+        const current = selectedFlavors.length + 1;
+        titleText = 'Sabor ' + current + ' de ' + flavorCount + ': ' + tempProduct.name;
+    }
+    title.textContent = titleText;
+
+    const selectedInfo = selectedFlavors.length > 0
+        ? '<p style="text-align:center;font-size:13px;color:#666;margin-bottom:12px;">Ya elegiste: <strong>' + selectedFlavors.join(', ') + '</strong></p>'
+        : '';
+
+    const disponibles = (typeof SABORES !== 'undefined' ? SABORES : []).filter(s => s.disponible);
+
+    if (disponibles.length === 0) {
+        flavorsList.innerHTML = selectedInfo + '<p style="text-align:center;color:#999;padding:20px;">No hay sabores disponibles 😔</p>';
+    } else {
+        flavorsList.innerHTML = selectedInfo + disponibles.map(s =>
             '<button class="flavor-btn" onclick="selectFlavor(\'' + s.nombre + '\')">' + s.nombre + '</button>'
         ).join('');
     }
-    
+
     modal.classList.add('active');
+}
+
+function selectFlavor(flavor) {
+    if (!tempProduct) return;
+    selectedFlavors.push(flavor);
+    
+    if (selectedFlavors.length >= flavorCount) {
+        const flavorStr = selectedFlavors.join(', ');
+        const product = tempProduct;
+        const flavors = selectedFlavors.slice();
+        closeFlavorModal();
+        addDirectToCart(product.name, product.price, flavorStr);
+    } else {
+        openFlavorModal();
+    }
 }
 
 function closeFlavorModal() {
     const modal = document.getElementById('flavor-modal');
     if (modal) modal.classList.remove('active');
     tempProduct = null;
-}
-
-function selectFlavor(flavor) {
-    if (!tempProduct) return;
-    addDirectToCart(tempProduct.name, tempProduct.price, flavor);
-    closeFlavorModal();
+    flavorCount = 0;
+    selectedFlavors = [];
 }
 
 function removeFromCart(name) {
