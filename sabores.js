@@ -29,3 +29,13 @@ const PRODUCTOS_CON_SABOR = {
     "Waffle Tentación": 2,
     "Candywaffles": 1
 };
+const PRODUCTOS_MICHELADO = [
+    "Cerveza Andina Light",
+    "Cerveza Águila Light",
+    "Cerveza Corona",
+    "Cerveza Coronita",
+    "Cerveza Club Colombia",
+    "Soda Paraíso Cítrico",
+    "Soda Frutos Rojos",
+    "Soda Blue Passion"
+];
