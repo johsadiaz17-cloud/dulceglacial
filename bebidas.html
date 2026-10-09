@@ -113,7 +113,7 @@ footer{background:#333;color:white;text-align:center;padding:25px;margin-top:50p
             <button class="btn-agregar" onclick="addToCart('Cerveza Águila Light', 3000)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171344.png" alt="Corona">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584586/Captura_de_pantalla_2026-10-09_172218.png" alt="Corona">
             <div class="card-body"><h4>Corona</h4><p>Cerveza Corona.</p><div class="precio">$4.500</div>
             <button class="btn-agregar" onclick="addToCart('Cerveza Corona', 4500)">+ Agregar al pedido</button></div>
         </div>
@@ -124,8 +124,8 @@ footer{background:#333;color:white;text-align:center;padding:25px;margin-top:50p
         </div>
         <div class="card">
             <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584179/Captura_de_pantalla_2026-10-09_171350.png" alt="Like">
-            <div class="card-body"><h4>Like</h4><p>Bebida Like.</p><div class="precio">$7.000</div>
-            <button class="btn-agregar" onclick="addToCart('Like', 7000)">+ Agregar al pedido</button></div>
+            <div class="card-body"><h4>Like</h4><p>Bebida Like.</p><div class="precio">$4.000</div>
+            <button class="btn-agregar" onclick="addToCart('Like', 4000)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
             <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171355.png" alt="Club Colombia">
@@ -171,6 +171,14 @@ footer{background:#333;color:white;text-align:center;padding:25px;margin-top:50p
                 <button class="btn-whatsapp-cart" onclick="sendOrder()">📲 Enviar por WhatsApp</button>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="flavor-modal" id="flavor-modal">
+    <div class="flavor-panel">
+        <h3 id="flavor-title">Elige el sabor</h3>
+        <div class="flavors-list" id="flavors-list"></div>
+        <button class="flavor-cancel" onclick="closeFlavorModal()">Cancelar</button>
     </div>
 </div>
 
