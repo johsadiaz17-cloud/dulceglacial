@@ -7,5 +7,7 @@ const AGOTADOS = [
     "Cerveza Andina",
     "Cerveza Corona",
     "Cerveza Coronita",
-    "Cerveza Club Colombia"
+    "Cerveza Club Colombia",
+    "Brownie con Helado",
+    "Fusión Chocolate"
 ];
