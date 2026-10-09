@@ -30,7 +30,6 @@ const PRODUCTOS_CON_SABOR = {
     "Candywaffles": 1
 };
 
-// Productos que ofrecen michelado (+$2.000)
 const PRODUCTOS_MICHELADO = [
     "Cerveza Andina Light",
     "Cerveza Águila Light",
