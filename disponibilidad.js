@@ -3,12 +3,4 @@
 // ========================================
 // Productos AGOTADOS (no se pueden pedir)
 
-const AGOTADOS = [
-    "Cerveza Andina",
-    "Cerveza Corona",
-    "Cerveza Coronita",
-    "Cerveza Club Colombia",
-    "Glacial Mango",
-    "Glacial Fresa",
-    "Glacial Banana"
-];
+const AGOTADOS = [];
