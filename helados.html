@@ -7,92 +7,67 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
 body{background:#fff0f4;color:#333;}
-
-.topbar{
-    background:#ff4d6d;color:white;padding:15px 25px;
-    display:flex;justify-content:space-between;align-items:center;
-    position:sticky;top:0;z-index:10;box-shadow:0 2px 10px rgba(0,0,0,0.15);
-}
+.topbar{background:#ff4d6d;color:white;padding:15px 25px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;box-shadow:0 2px 10px rgba(0,0,0,0.15);}
 .topbar h1{font-size:22px;}
-.topbar a{
-    color:white;text-decoration:none;background:rgba(255,255,255,0.2);
-    padding:8px 16px;border-radius:20px;font-size:14px;transition:0.3s;
-}
+.topbar a{color:white;text-decoration:none;background:rgba(255,255,255,0.2);padding:8px 16px;border-radius:20px;font-size:14px;transition:0.3s;}
 .topbar a:hover{background:rgba(255,255,255,0.4);}
-
-.hero-cat{
-    height:300px;
-    background-image:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-        url('https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?auto=format&fit=crop&w=1600&q=80');
-    background-size:cover;background-position:center;
-    display:flex;flex-direction:column;justify-content:center;align-items:center;
-    color:white;text-align:center;padding:20px;
-}
+.hero-cat{height:300px;background-image:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?auto=format&fit=crop&w=1600&q=80');background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:center;align-items:center;color:white;text-align:center;padding:20px;}
 .hero-cat h2{font-size:42px;margin-bottom:10px;}
 .hero-cat p{font-size:18px;opacity:0.9;}
-
-.submenu{
-    max-width:1200px;
-    margin:-30px auto 0;
-    padding:0 20px;
-    position:relative;
-    z-index:5;
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    justify-content:center;
-}
-.submenu a{
-    background:white;
-    color:#ff4d6d;
-    text-decoration:none;
-    padding:12px 22px;
-    border-radius:30px;
-    font-weight:bold;
-    font-size:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.1);
-    transition:0.3s;
-    border:2px solid #ff4d6d;
-}
-.submenu a:hover{
-    background:#ff4d6d;
-    color:white;
-    transform:translateY(-3px);
-}
-
+.submenu{max-width:1200px;margin:-30px auto 0;padding:0 20px;position:relative;z-index:5;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.submenu a{background:white;color:#ff4d6d;text-decoration:none;padding:12px 22px;border-radius:30px;font-weight:bold;font-size:15px;box-shadow:0 4px 15px rgba(0,0,0,0.1);transition:0.3s;border:2px solid #ff4d6d;}
+.submenu a:hover{background:#ff4d6d;color:white;transform:translateY(-3px);}
 .categoria{max-width:1200px;margin:60px auto;padding:0 20px;scroll-margin-top:80px;}
-.categoria h3{
-    font-size:30px;color:#ff4d6d;margin-bottom:25px;
-    border-left:6px solid #ff4d6d;padding-left:15px;
-    display:flex;align-items:center;gap:10px;
-}
+.categoria h3{font-size:30px;color:#ff4d6d;margin-bottom:25px;border-left:6px solid #ff4d6d;padding-left:15px;display:flex;align-items:center;gap:10px;}
 .grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));gap:25px;}
-
-.card{
-    background:white;border-radius:18px;overflow:hidden;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
-    transition:transform 0.3s, box-shadow 0.3s;
-    display:flex;flex-direction:column;
-}
+.card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.08);transition:transform 0.3s, box-shadow 0.3s;display:flex;flex-direction:column;}
 .card:hover{transform:translateY(-6px);box-shadow:0 10px 25px rgba(255,77,109,0.25);}
 .card img{width:100%;height:220px;object-fit:cover;background:#f5f5f5;}
 .card-body{padding:18px;flex:1;display:flex;flex-direction:column;}
 .card-body h4{font-size:19px;margin-bottom:8px;color:#222;}
 .card-body p{font-size:14px;color:#666;line-height:1.4;margin-bottom:12px;flex:1;}
 .precio{font-size:20px;font-weight:bold;color:#ff4d6d;margin-bottom:12px;}
-.btn-pedir{
-    display:inline-block;background:#25D366;color:white;text-decoration:none;
-    text-align:center;padding:10px;border-radius:10px;font-weight:bold;
-    font-size:14px;transition:0.3s;
-}
-.btn-pedir:hover{background:#1da851;}
-
+.btn-agregar{background:#ff4d6d;color:white;border:none;text-align:center;padding:12px;border-radius:10px;font-weight:bold;font-size:14px;cursor:pointer;font-family:inherit;transition:0.3s;width:100%;margin-top:6px;}
+.btn-agregar:hover{background:#ff2e57;}
+.btn-alt{background:#ff7f95;}
 footer{background:#333;color:white;text-align:center;padding:25px;margin-top:50px;font-size:14px;}
-
-@media(max-width:600px){
-    .hero-cat h2{font-size:30px;}
-    .categoria h3{font-size:22px;}
-}
+.cart-float{position:fixed;bottom:25px;right:25px;background:#ff4d6d;color:white;border:none;border-radius:50px;padding:15px 25px;font-size:18px;font-weight:bold;cursor:pointer;box-shadow:0 4px 20px rgba(255,77,109,0.5);z-index:100;display:flex;align-items:center;gap:10px;transition:0.3s;font-family:inherit;}
+.cart-float:hover{transform:scale(1.05);background:#ff2e57;}
+.cart-count{background:white;color:#ff4d6d;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;}
+.cart-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:200;justify-content:center;align-items:flex-end;}
+.cart-modal.active{display:flex;}
+.cart-panel{background:white;width:100%;max-width:500px;max-height:85vh;border-radius:20px 20px 0 0;display:flex;flex-direction:column;animation:slideUp 0.3s ease;}
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+.cart-header{padding:20px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;}
+.cart-header h3{color:#ff4d6d;}
+.cart-close{background:none;border:none;font-size:28px;cursor:pointer;color:#999;line-height:1;}
+.cart-body{padding:15px 20px;overflow-y:auto;flex:1;}
+.cart-item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f0f0f0;gap:10px;}
+.cart-item-info{flex:1;}
+.cart-item-info strong{display:block;font-size:15px;}
+.cart-item-info span{font-size:12px;color:#999;}
+.cart-item-qty{display:flex;align-items:center;gap:8px;}
+.cart-item-qty button{background:#ff4d6d;color:white;border:none;width:28px;height:28px;border-radius:50%;font-size:18px;cursor:pointer;font-weight:bold;line-height:1;}
+.cart-item-total{font-weight:bold;color:#ff4d6d;min-width:70px;text-align:right;}
+.cart-footer{padding:20px;border-top:1px solid #eee;background:#fff;}
+.cart-total-row{display:flex;justify-content:space-between;font-size:20px;font-weight:bold;margin-bottom:15px;color:#333;}
+.cart-total-row span:last-child{color:#ff4d6d;}
+.cart-actions{display:flex;gap:10px;}
+.cart-actions button{flex:1;padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:bold;cursor:pointer;transition:0.3s;font-family:inherit;}
+.btn-vaciar{background:#f0f0f0;color:#666;}
+.btn-whatsapp-cart{background:#25D366;color:white;}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:#333;color:white;padding:12px 24px;border-radius:30px;font-size:14px;opacity:0;transition:0.3s;pointer-events:none;z-index:300;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.flavor-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:250;justify-content:center;align-items:center;padding:20px;}
+.flavor-modal.active{display:flex;}
+.flavor-panel{background:white;width:100%;max-width:420px;border-radius:20px;padding:25px;animation:pop 0.3s ease;max-height:90vh;overflow-y:auto;}
+@keyframes pop{from{transform:scale(0.9);opacity:0;}to{transform:scale(1);opacity:1;}}
+.flavor-panel h3{color:#ff4d6d;margin-bottom:20px;text-align:center;font-size:18px;}
+.flavors-list{display:grid;grid-template-columns:repeat(2, 1fr);gap:10px;margin-bottom:20px;}
+.flavor-btn{background:#fff0f4;color:#333;border:2px solid #ff4d6d;padding:14px;border-radius:12px;font-size:15px;font-weight:bold;cursor:pointer;font-family:inherit;transition:0.2s;}
+.flavor-btn:hover{background:#ff4d6d;color:white;}
+.flavor-cancel{width:100%;background:#f0f0f0;color:#666;border:none;padding:12px;border-radius:12px;font-weight:bold;cursor:pointer;font-family:inherit;}
+@media(max-width:600px){.hero-cat h2{font-size:30px;}.categoria h3{font-size:22px;}.cart-float{bottom:15px;right:15px;padding:12px 18px;font-size:15px;}}
 </style>
 </head>
 <body>
@@ -107,7 +82,6 @@ footer{background:#333;color:white;text-align:center;padding:25px;margin-top:50p
     <p>Cremosos, fríos y llenos de sabor</p>
 </div>
 
-<!-- SUBMENÚ -->
 <div class="submenu">
     <a href="#copas">🍨 Copas y Postres</a>
     <a href="#ensaladas">🍓 Ensaladas</a>
@@ -116,229 +90,169 @@ footer{background:#333;color:white;text-align:center;padding:25px;margin-top:50p
     <a href="#conos">🍦 Conos</a>
 </div>
 
-<!-- COPAS Y POSTRES -->
 <div class="categoria" id="copas">
     <h3>🍨 Copas y Postres</h3>
     <div class="grid">
 
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417857/Captura_de_pantalla_2026-10-07_190317.png" alt="Glacial Mango">
-            <div class="card-body">
-                <h4>Glacial Mango</h4>
-                <p>Copa con helado, mango fresco, crema y barquillo.</p>
-                <div class="precio">$13.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20un%20Glacial%20Mango%20🥭">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417857/Captura_de_pantalla_2026-10-07_190317.png" alt="Glacial Mango">
+            <div class="card-body"><h4>Glacial Mango</h4><p>Copa con helado, mango fresco, crema y barquillo.</p><div class="precio">$13.000</div>
+            <button class="btn-agregar" onclick="addToCart('Glacial Mango', 13000)">+ Agregar al pedido</button></div>
         </div>
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417857/Captura_de_pantalla_2026-10-07_190307.png" alt="Glacial Fresa">
-            <div class="card-body">
-                <h4>Glacial Fresa</h4>
-                <p>Copa helada con helado de fresa, fresas frescas y crema.</p>
-                <div class="precio">$13.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20un%20Glacial%20Fresa%20🍓">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417857/Captura_de_pantalla_2026-10-07_190307.png" alt="Glacial Fresa">
+            <div class="card-body"><h4>Glacial Fresa</h4><p>Copa helada con helado de fresa, fresas frescas y crema.</p><div class="precio">$13.000</div>
+            <button class="btn-agregar" onclick="addToCart('Glacial Fresa', 13000)">+ Agregar al pedido</button></div>
         </div>
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417857/Captura_de_pantalla_2026-10-07_190321.png" alt="Glacial Banana">
-            <div class="card-body">
-                <h4>Glacial Banana</h4>
-                <p>Copa con helado, banano, chocolate y crema batida.</p>
-                <div class="precio">$13.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20un%20Glacial%20Banana%20🍌">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417857/Captura_de_pantalla_2026-10-07_190321.png" alt="Glacial Banana">
+            <div class="card-body"><h4>Glacial Banana</h4><p>Copa con helado, banano, chocolate y crema batida.</p><div class="precio">$13.000</div>
+            <button class="btn-agregar" onclick="addToCart('Glacial Banana', 13000)">+ Agregar al pedido</button></div>
         </div>
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417857/Captura_de_pantalla_2026-10-07_190312.png" alt="Fusión Chocolate">
-            <div class="card-body">
-                <h4>Fusión Chocolate</h4>
-                <p>Copa con helado de chocolate, bolas de brownie y sirope.</p>
-                <div class="precio">$12.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20una%20Fusión%20Chocolate%20🍫">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417857/Captura_de_pantalla_2026-10-07_190312.png" alt="Fusión Chocolate">
+            <div class="card-body"><h4>Fusión Chocolate</h4><p>Copa con helado de chocolate, bolas de brownie y sirope.</p><div class="precio">$12.000</div>
+            <button class="btn-agregar" onclick="addToCart('Fusión Chocolate', 12000)">+ Agregar al pedido</button></div>
         </div>
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190252.png" alt="Brownie con Helado">
-            <div class="card-body">
-                <h4>Brownie con Helado</h4>
-                <p>Delicioso brownie de chocolate acompañado de helado artesanal.</p>
-                <div class="precio">$11.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20un%20Brownie%20con%20Helado%20🍫">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190252.png" alt="Brownie con Helado">
+            <div class="card-body"><h4>Brownie con Helado</h4><p>Delicioso brownie de chocolate acompañado de helado artesanal.</p><div class="precio">$11.000</div>
+            <button class="btn-agregar" onclick="addToCart('Brownie con Helado', 11000)">+ Agregar al pedido</button></div>
         </div>
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417857/Captura_de_pantalla_2026-10-07_190303.png" alt="Banana Split">
-            <div class="card-body">
-                <h4>Banana Split</h4>
-                <p>Plátano, tres bolas de helado, crema, chocolate y cereza.</p>
-                <div class="precio">$15.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20un%20Banana%20Split%20🍌">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417857/Captura_de_pantalla_2026-10-07_190303.png" alt="Banana Split">
+            <div class="card-body"><h4>Banana Split</h4><p>Plátano, tres bolas de helado, crema, chocolate y cereza.</p><div class="precio">$15.000</div>
+            <button class="btn-agregar" onclick="addToCart('Banana Split', 15000)">+ Agregar al pedido</button></div>
         </div>
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417857/Captura_de_pantalla_2026-10-07_190258.png" alt="Copa Galaxi">
-            <div class="card-body">
-                <h4>Copa Galaxi</h4>
-                <p>Copa helada con crema, chispas de chocolate y confites de colores.</p>
-                <div class="precio">$12.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20una%20Copa%20Galaxi%20🌌">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417857/Captura_de_pantalla_2026-10-07_190258.png" alt="Copa Galaxi">
+            <div class="card-body"><h4>Copa Galaxi</h4><p>Copa helada con crema, chispas de chocolate y confites de colores.</p><div class="precio">$12.000</div>
+            <button class="btn-agregar" onclick="addToCart('Copa Galaxi', 12000)">+ Agregar al pedido</button></div>
         </div>
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190248.png" alt="Gusanito">
-            <div class="card-body">
-                <h4>Gusanito</h4>
-                <p>Tres bolas de helado en forma de gusanito con barquillos y gomitas.</p>
-                <div class="precio">$13.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20un%20Gusanito%20🐛">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791552133/Captura_de_pantalla_2026-10-09_082047.png" alt="Copa Oreo">
+            <div class="card-body"><h4>Copa Oreo</h4><p>Deliciosa copa con helado, trozos de Oreo y sirope de chocolate.</p><div class="precio">$13.000</div>
+            <button class="btn-agregar" onclick="addToCart('Copa Oreo', 13000)">+ Agregar al pedido</button></div>
         </div>
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417732/Captura_de_pantalla_2026-10-07_190158.png" alt="Buhito">
-            <div class="card-body">
-                <h4>Buhito</h4>
-                <p>Tierna copa con forma de búho, helado de chocolate, Oreo y sirope.</p>
-                <div class="precio">$10.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20un%20Buhito%20🦉">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791552133/Captura_de_pantalla_2026-10-09_082055.png" alt="Copa Milo">
+            <div class="card-body"><h4>Copa Milo</h4><p>Copa con helado, Milo y crema batida.</p><div class="precio">$13.000</div>
+            <button class="btn-agregar" onclick="addToCart('Copa Milo', 13000)">+ Agregar al pedido</button></div>
         </div>
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417649/Captura_de_pantalla_2026-10-07_185944.png" alt="Pulpito">
-            <div class="card-body">
-                <h4>Pulpito</h4>
-                <p>Divertida copa decorada con helado azul, galletas Oreo y gomitas de colores.</p>
-                <div class="precio">$10.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20un%20Pulpito%20🐙">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190248.png" alt="Gusanito">
+            <div class="card-body"><h4>Gusanito</h4><p>Tres bolas de helado en forma de gusanito con barquillos y gomitas.</p><div class="precio">$13.000</div>
+            <button class="btn-agregar" onclick="addToCart('Gusanito', 13000)">+ Agregar al pedido</button></div>
+        </div>
+        <div class="card">
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417732/Captura_de_pantalla_2026-10-07_190158.png" alt="Buhito">
+            <div class="card-body"><h4>Buhito</h4><p>Tierna copa con forma de búho, helado de chocolate y Oreo.</p><div class="precio">$10.000</div>
+            <button class="btn-agregar" onclick="addToCart('Buhito', 10000)">+ Agregar al pedido</button></div>
+        </div>
+        <div class="card">
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417649/Captura_de_pantalla_2026-10-07_185944.png" alt="Pulpito">
+            <div class="card-body"><h4>Pulpito</h4><p>Copa decorada con helado azul, Oreo y gomitas.</p><div class="precio">$10.000</div>
+            <button class="btn-agregar" onclick="addToCart('Pulpito', 10000)">+ Agregar al pedido</button></div>
         </div>
 
     </div>
 </div>
 
-<!-- ENSALADAS -->
 <div class="categoria" id="ensaladas">
     <h3>🍓 Ensaladas de Frutas</h3>
     <div class="grid">
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417857/Captura_de_pantalla_2026-10-07_190325.png" alt="Frutiglacial Encanto">
-            <div class="card-body">
-                <h4>Frutiglacial Encanto</h4>
-                <p>Helado, queso, mango, manzana roja, patilla, melón, papaya, fresa, crema de leche y leche condensada.</p>
-                <div class="precio">Grande: $18.000 · Pequeña: $12.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20una%20Frutiglacial%20Encanto%20🍓">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417857/Captura_de_pantalla_2026-10-07_190325.png" alt="Frutiglacial Encanto">
+            <div class="card-body"><h4>Frutiglacial Encanto</h4><p>Helado, queso, mango, manzana, patilla, melón, papaya, fresa y crema de leche.</p><div class="precio">Grande: $18.000 · Pequeña: $12.000</div>
+            <button class="btn-agregar" onclick="addToCart('Frutiglacial Grande', 18000)">+ Frutiglacial Grande ($18.000)</button>
+            <button class="btn-agregar btn-alt" onclick="addToCart('Frutiglacial Pequeña', 12000)">+ Frutiglacial Pequeña ($12.000)</button></div>
         </div>
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190334.png" alt="Fresabanana">
-            <div class="card-body">
-                <h4>Fresabanana</h4>
-                <p>Base de waffle con helado, fresa, banano y sirope de chocolate.</p>
-                <div class="precio">$13.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20una%20Fresabanana%20🍓">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190334.png" alt="Fresabanana">
+            <div class="card-body"><h4>Fresabanana</h4><p>Base de waffle con helado, fresa, banano y sirope.</p><div class="precio">$13.000</div>
+            <button class="btn-agregar" onclick="addToCart('Fresabanana', 13000)">+ Agregar al pedido</button></div>
         </div>
-
     </div>
 </div>
 
-<!-- WAFFLES -->
 <div class="categoria" id="waffles">
     <h3>🧇 Waffles</h3>
     <div class="grid">
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190339.png" alt="Tentación">
-            <div class="card-body">
-                <h4>Tentación</h4>
-                <p>Waffle caliente con helado, chocolate y crema.</p>
-                <div class="precio">$11.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20un%20waffle%20Tentación%20🧇">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190339.png" alt="Tentación">
+            <div class="card-body"><h4>Tentación</h4><p>Waffle caliente con helado, chocolate y crema.</p><div class="precio">$11.000</div>
+            <button class="btn-agregar" onclick="addToCart('Waffle Tentación', 11000)">+ Agregar al pedido</button></div>
         </div>
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190342.png" alt="Candywaffles">
-            <div class="card-body">
-                <h4>Candywaffles</h4>
-                <p>Waffle con helado de fresa, malvaviscos, fresas y chocolate.</p>
-                <div class="precio">$13.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20un%20Candywaffles%20🧇">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190342.png" alt="Candywaffles">
+            <div class="card-body"><h4>Candywaffles</h4><p>Waffle con helado de fresa, malvaviscos, fresas y chocolate.</p><div class="precio">$13.000</div>
+            <button class="btn-agregar" onclick="addToCart('Candywaffles', 13000)">+ Agregar al pedido</button></div>
         </div>
-
     </div>
 </div>
 
-<!-- MALTEADAS -->
 <div class="categoria" id="malteadas">
     <h3>🥤 Malteadas</h3>
     <div class="grid">
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190347.png" alt="Celestial de Café">
-            <div class="card-body">
-                <h4>Celestial de Café</h4>
-                <p>Malteada cremosa de café con crema y Oreo.</p>
-                <div class="precio">$12.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20una%20malteada%20Celestial%20de%20Café%20☕">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190347.png" alt="Celestial de Café">
+            <div class="card-body"><h4>Celestial de Café</h4><p>Malteada cremosa de café con crema y Oreo.</p><div class="precio">$12.000</div>
+            <button class="btn-agregar" onclick="addToCart('Malteada Celestial de Café', 12000)">+ Agregar al pedido</button></div>
         </div>
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190351.png" alt="Malteada de Fresa">
-            <div class="card-body">
-                <h4>Malteada de Fresa</h4>
-                <p>Malteada cremosa de fresa con crema batida.</p>
-                <div class="precio">$11.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20una%20malteada%20de%20Fresa%20🍓">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190351.png" alt="Malteada de Fresa">
+            <div class="card-body"><h4>Malteada de Fresa</h4><p>Malteada cremosa de fresa con crema batida.</p><div class="precio">$11.000</div>
+            <button class="btn-agregar" onclick="addToCart('Malteada de Fresa', 11000)">+ Agregar al pedido</button></div>
         </div>
-
         <div class="card">
-            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190357.png" alt="Malteada de Chocolate">
-            <div class="card-body">
-                <h4>Malteada de Chocolate</h4>
-                <p>Malteada de chocolate con chips y crema batida.</p>
-                <div class="precio">$11.000</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20una%20malteada%20de%20Chocolate%20🍫">Pedir por WhatsApp</a>
-            </div>
+            <img src="https://res.cloudinary.com/dq2lljdm/image/upload/v1791417856/Captura_de_pantalla_2026-10-07_190357.png" alt="Malteada de Chocolate">
+            <div class="card-body"><h4>Malteada de Chocolate</h4><p>Malteada de chocolate con chips y crema batida.</p><div class="precio">$11.000</div>
+            <button class="btn-agregar" onclick="addToCart('Malteada de Chocolate', 11000)">+ Agregar al pedido</button></div>
         </div>
-
     </div>
 </div>
 
-<!-- CONOS -->
 <div class="categoria" id="conos">
     <h3>🍦 Conos</h3>
     <div class="grid">
-
         <div class="card">
             <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=600&q=80" alt="Cono de Helado">
-            <div class="card-body">
-                <h4>Cono de Helado</h4>
-                <p>Delicioso cono artesanal con el sabor que prefieras.</p>
-                <div class="precio">1 bola: $3.500 · 2 bolas: $5.500</div>
-                <a class="btn-pedir" target="_blank" href="https://wa.me/573014494093?text=Hola,%20quiero%20un%20cono%20de%20helado%20🍦">Pedir por WhatsApp</a>
-            </div>
+            <div class="card-body"><h4>Cono de Helado</h4><p>Delicioso cono artesanal con el sabor que prefieras.</p><div class="precio">1 bola: $3.500 · 2 bolas: $5.500</div>
+            <button class="btn-agregar" onclick="addToCart('Cono 1 bola', 3500)">+ Cono 1 bola ($3.500)</button>
+            <button class="btn-agregar btn-alt" onclick="addToCart('Cono 2 bolas', 5500)">+ Cono 2 bolas ($5.500)</button></div>
         </div>
-
     </div>
 </div>
 
-<footer>
-    © 2026 Dulce Glacial - Todos los derechos reservados
-</footer>
+<footer>© 2026 Dulce Glacial - Todos los derechos reservados</footer>
 
+<button class="cart-float" onclick="openCart()">🛒 <span class="cart-count">0</span></button>
+
+<div class="cart-modal" id="cart-modal">
+    <div class="cart-panel">
+        <div class="cart-header"><h3>🛒 Tu Pedido</h3><button class="cart-close" onclick="closeCart()">×</button></div>
+        <div class="cart-body" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total-row"><span>Total:</span><span class="cart-total">$0</span></div>
+            <div class="cart-actions">
+                <button class="btn-vaciar" onclick="clearCart()">Vaciar</button>
+                <button class="btn-whatsapp-cart" onclick="sendOrder()">📲 Enviar por WhatsApp</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="flavor-modal" id="flavor-modal">
+    <div class="flavor-panel">
+        <h3 id="flavor-title">Elige el sabor</h3>
+        <div class="flavors-list" id="flavors-list"></div>
+        <button class="flavor-cancel" onclick="closeFlavorModal()">Cancelar</button>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="sabores.js"></script>
+<script src="cart.js"></script>
 </body>
 </html>
