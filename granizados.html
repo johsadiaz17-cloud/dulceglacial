@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">    
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Granizados - Dulce Glacial</title>
@@ -57,6 +54,15 @@ footer{background:#333;color:white;text-align:center;padding:25px;margin-top:50p
 .btn-whatsapp-cart{background:#25D366;color:white;}
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:#333;color:white;padding:12px 24px;border-radius:30px;font-size:14px;opacity:0;transition:0.3s;pointer-events:none;z-index:300;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.flavor-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:250;justify-content:center;align-items:center;padding:20px;}
+.flavor-modal.active{display:flex;}
+.flavor-panel{background:white;width:100%;max-width:420px;border-radius:20px;padding:25px;animation:pop 0.3s ease;max-height:90vh;overflow-y:auto;}
+@keyframes pop{from{transform:scale(0.9);opacity:0;}to{transform:scale(1);opacity:1;}}
+.flavor-panel h3{color:#ff4d6d;margin-bottom:20px;text-align:center;font-size:18px;}
+.flavors-list{display:grid;grid-template-columns:repeat(2, 1fr);gap:10px;margin-bottom:20px;}
+.flavor-btn{background:#fff0f4;color:#333;border:2px solid #ff4d6d;padding:14px;border-radius:12px;font-size:15px;font-weight:bold;cursor:pointer;font-family:inherit;transition:0.2s;}
+.flavor-btn:hover{background:#ff4d6d;color:white;}
+.flavor-cancel{width:100%;background:#f0f0f0;color:#666;border:none;padding:12px;border-radius:12px;font-weight:bold;cursor:pointer;font-family:inherit;}
 @media(max-width:600px){.hero-cat h2{font-size:30px;}.categoria h3{font-size:22px;}.cart-float{bottom:15px;right:15px;padding:12px 18px;font-size:15px;}}
 </style>
 </head>
@@ -76,12 +82,12 @@ footer{background:#333;color:white;text-align:center;padding:25px;margin-top:50p
     <h3>Granizados 10 oz — $8.000</h3>
     <div class="grid">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=600&q=80" alt="Blue Mora">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171306.png" alt="Blue Mora">
             <div class="card-body"><h4>Blue Mora</h4><p>Granizado azul con sabor a mora, decorado con gomitas y dulces.</p><div class="precio">$8.000</div>
             <button class="btn-agregar" onclick="addToCart('Granizado Blue Mora 10oz', 8000)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=600&q=80" alt="Red Berries">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171306.png" alt="Red Berries">
             <div class="card-body"><h4>Red Berries</h4><p>Granizado de frutos rojos con toppings dulces.</p><div class="precio">$8.000</div>
             <button class="btn-agregar" onclick="addToCart('Granizado Red Berries 10oz', 8000)">+ Agregar al pedido</button></div>
         </div>
@@ -92,12 +98,12 @@ footer{background:#333;color:white;text-align:center;padding:25px;margin-top:50p
     <h3>Granizados 12 oz — $10.000</h3>
     <div class="grid">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=600&q=80" alt="Golden Maracuyá">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171306.png" alt="Golden Maracuyá">
             <div class="card-body"><h4>Golden Maracuyá</h4><p>Granizado de maracuyá con toppings y dulces.</p><div class="precio">$10.000</div>
             <button class="btn-agregar" onclick="addToCart('Granizado Golden Maracuyá 12oz', 10000)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=600&q=80" alt="Mango Tropical">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171306.png" alt="Mango Tropical">
             <div class="card-body"><h4>Mango Tropical</h4><p>Granizado de mango con toppings tropicales.</p><div class="precio">$10.000</div>
             <button class="btn-agregar" onclick="addToCart('Granizado Mango Tropical 12oz', 10000)">+ Agregar al pedido</button></div>
         </div>
@@ -108,17 +114,17 @@ footer{background:#333;color:white;text-align:center;padding:25px;margin-top:50p
     <h3>Soda Glacial — $14.000</h3>
     <div class="grid">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=600&q=80" alt="Soda Maracumango">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171318.png" alt="Soda Maracumango">
             <div class="card-body"><h4>Soda Glacial Maracumango</h4><p>Refrescante soda con maracuyá y mango, servida con hielo y frutas.</p><div class="precio">$14.000</div>
             <button class="btn-agregar" onclick="addToCart('Soda Glacial Maracumango', 14000)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1437418747212-8d9709afab22?auto=format&fit=crop&w=600&q=80" alt="Soda Fresamango">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171318.png" alt="Soda Fresamango">
             <div class="card-body"><h4>Soda Glacial Fresamango</h4><p>Soda con fresa y mango, decorada con frutas frescas.</p><div class="precio">$14.000</div>
             <button class="btn-agregar" onclick="addToCart('Soda Glacial Fresamango', 14000)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=600&q=80" alt="Soda Mango">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171318.png" alt="Soda Mango">
             <div class="card-body"><h4>Soda Glacial Mango</h4><p>Soda refrescante de mango con hielo y toppings.</p><div class="precio">$14.000</div>
             <button class="btn-agregar" onclick="addToCart('Soda Glacial Mango', 14000)">+ Agregar al pedido</button></div>
         </div>
