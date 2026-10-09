@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">    
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bebidas - Dulce Glacial</title>
@@ -57,6 +54,15 @@ footer{background:#333;color:white;text-align:center;padding:25px;margin-top:50p
 .btn-whatsapp-cart{background:#25D366;color:white;}
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:#333;color:white;padding:12px 24px;border-radius:30px;font-size:14px;opacity:0;transition:0.3s;pointer-events:none;z-index:300;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.flavor-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:250;justify-content:center;align-items:center;padding:20px;}
+.flavor-modal.active{display:flex;}
+.flavor-panel{background:white;width:100%;max-width:420px;border-radius:20px;padding:25px;animation:pop 0.3s ease;max-height:90vh;overflow-y:auto;}
+@keyframes pop{from{transform:scale(0.9);opacity:0;}to{transform:scale(1);opacity:1;}}
+.flavor-panel h3{color:#ff4d6d;margin-bottom:20px;text-align:center;font-size:18px;}
+.flavors-list{display:grid;grid-template-columns:repeat(2, 1fr);gap:10px;margin-bottom:20px;}
+.flavor-btn{background:#fff0f4;color:#333;border:2px solid #ff4d6d;padding:14px;border-radius:12px;font-size:15px;font-weight:bold;cursor:pointer;font-family:inherit;transition:0.2s;}
+.flavor-btn:hover{background:#ff4d6d;color:white;}
+.flavor-cancel{width:100%;background:#f0f0f0;color:#666;border:none;padding:12px;border-radius:12px;font-weight:bold;cursor:pointer;font-family:inherit;}
 @media(max-width:600px){.hero-cat h2{font-size:30px;}.categoria h3{font-size:22px;}.cart-float{bottom:15px;right:15px;padding:12px 18px;font-size:15px;}}
 </style>
 </head>
@@ -76,17 +82,17 @@ footer{background:#333;color:white;text-align:center;padding:25px;margin-top:50p
     <h3>Sodas Saborizadas — $12.000</h3>
     <div class="grid">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=600&q=80" alt="Paraíso Cítrico">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171330.png" alt="Paraíso Cítrico">
             <div class="card-body"><h4>Paraíso Cítrico</h4><p>Refrescante soda con toque cítrico.</p><div class="precio">$12.000</div>
             <button class="btn-agregar" onclick="addToCart('Soda Paraíso Cítrico', 12000)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=600&q=80" alt="Frutos Rojos">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171330.png" alt="Frutos Rojos">
             <div class="card-body"><h4>Frutos Rojos</h4><p>Soda saborizada de frutos rojos.</p><div class="precio">$12.000</div>
             <button class="btn-agregar" onclick="addToCart('Soda Frutos Rojos', 12000)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=600&q=80" alt="Blue Passion">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171330.png" alt="Blue Passion">
             <div class="card-body"><h4>Blue Passion</h4><p>Soda azul con maracuyá.</p><div class="precio">$12.000</div>
             <button class="btn-agregar" onclick="addToCart('Soda Blue Passion', 12000)">+ Agregar al pedido</button></div>
         </div>
@@ -97,32 +103,32 @@ footer{background:#333;color:white;text-align:center;padding:25px;margin-top:50p
     <h3>Cervezas</h3>
     <div class="grid">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=600&q=80" alt="Andina">
-            <div class="card-body"><h4>Andina</h4><p>Cerveza Andina bien fría.</p><div class="precio">$3.000</div>
-            <button class="btn-agregar" onclick="addToCart('Cerveza Andina', 3000)">+ Agregar al pedido</button></div>
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584741/Captura_de_pantalla_2026-10-09_172522.png" alt="Andina Light">
+            <div class="card-body"><h4>Andina Light</h4><p>Cerveza Andina Light bien fría.</p><div class="precio">$3.000</div>
+            <button class="btn-agregar" onclick="addToCart('Cerveza Andina Light', 3000)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1618183479302-1e0aa382c36b?auto=format&fit=crop&w=600&q=80" alt="Águila Light">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171400.png" alt="Águila Light">
             <div class="card-body"><h4>Águila Light</h4><p>Cerveza Águila Light.</p><div class="precio">$3.000</div>
             <button class="btn-agregar" onclick="addToCart('Cerveza Águila Light', 3000)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=600&q=80" alt="Corona">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171344.png" alt="Corona">
             <div class="card-body"><h4>Corona</h4><p>Cerveza Corona.</p><div class="precio">$4.500</div>
             <button class="btn-agregar" onclick="addToCart('Cerveza Corona', 4500)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1600788886242-5c96aabe3757?auto=format&fit=crop&w=600&q=80" alt="Coronita">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171406.png" alt="Coronita">
             <div class="card-body"><h4>Coronita</h4><p>Cerveza Coronita.</p><div class="precio">$4.000</div>
             <button class="btn-agregar" onclick="addToCart('Cerveza Coronita', 4000)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1614314434402-9c2b54c05e0e?auto=format&fit=crop&w=600&q=80" alt="Like">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584179/Captura_de_pantalla_2026-10-09_171350.png" alt="Like">
             <div class="card-body"><h4>Like</h4><p>Bebida Like.</p><div class="precio">$7.000</div>
             <button class="btn-agregar" onclick="addToCart('Like', 7000)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?auto=format&fit=crop&w=600&q=80" alt="Club Colombia">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171355.png" alt="Club Colombia">
             <div class="card-body"><h4>Club Colombia</h4><p>Cerveza Club Colombia.</p><div class="precio">$4.000</div>
             <button class="btn-agregar" onclick="addToCart('Cerveza Club Colombia', 4000)">+ Agregar al pedido</button></div>
         </div>
@@ -133,24 +139,19 @@ footer{background:#333;color:white;text-align:center;padding:25px;margin-top:50p
     <h3>Limonadas y Otros</h3>
     <div class="grid">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=600&q=80" alt="Botella de Agua">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171344.png" alt="Botella de Agua">
             <div class="card-body"><h4>Botella de Agua</h4><p>Agua pura bien fría.</p><div class="precio">$2.000</div>
             <button class="btn-agregar" onclick="addToCart('Botella de Agua', 2000)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=600&q=80" alt="Limonada Natural">
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171410.png" alt="Limonada Natural">
             <div class="card-body"><h4>Limonada Natural</h4><p>Limonada fresca preparada al momento.</p><div class="precio">$6.000</div>
             <button class="btn-agregar" onclick="addToCart('Limonada Natural', 6000)">+ Agregar al pedido</button></div>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=600&q=80" alt="Limonada de Coco">
-            <div class="card-body"><h4>Limonada de Coco</h4><p>Limonada cremosa de coco.</p><div class="precio">$8.000</div>
-            <button class="btn-agregar" onclick="addToCart('Limonada de Coco', 8000)">+ Agregar al pedido</button></div>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=600&q=80" alt="Adicional Michelado">
-            <div class="card-body"><h4>Adicional Michelado</h4><p>Adicional de michelado para tu cerveza.</p><div class="precio">$2.000</div>
-            <button class="btn-agregar" onclick="addToCart('Adicional Michelado', 2000)">+ Agregar al pedido</button></div>
+            <img src="https://res.cloudinary.com/dq2iljdm/image/upload/v1791584180/Captura_de_pantalla_2026-10-09_171414.png" alt="Cerezada">
+            <div class="card-body"><h4>Cerezada</h4><p>Bebida refrescante de cereza.</p><div class="precio">$8.000</div>
+            <button class="btn-agregar" onclick="addToCart('Cerezada', 8000)">+ Agregar al pedido</button></div>
         </div>
     </div>
 </div>
