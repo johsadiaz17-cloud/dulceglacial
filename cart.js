@@ -215,6 +215,13 @@ function sendOrder() {
         alert('Tu carrito está vacío 🛒');
         return;
     }
+    // Si checkout.js está cargado, delegar a él
+    if (typeof openCheckout === 'function') {
+        closeCart();
+        openCheckout();
+        return;
+    }
+    // Fallback: envío directo sin checkout
     const phone = '573014494093';
     let message = '¡Hola Dulce Glacial! 🍦\nQuiero hacer el siguiente pedido:\n\n';
     cart.forEach(item => {
