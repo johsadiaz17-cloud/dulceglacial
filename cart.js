@@ -1,5 +1,5 @@
 // ========================================
-// CARRITO CON SABORES - DULCE GLACIAL
+// CARRITO CON SABORES Y MICHELADO - DULCE GLACIAL
 // ========================================
 
 let cart = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -22,6 +22,13 @@ function addToCart(name, price) {
         showToast('Este producto está agotado 🚫');
         return;
     }
+    // Si es cerveza o soda, preguntar michelado
+    if (esBebidaMichelable(name)) {
+        tempProduct = { name: name, price: price, type: 'michelado' };
+        openMicheladoModal();
+        return;
+    }
+    // Si tiene sabores
     if (typeof PRODUCTOS_CON_SABOR !== 'undefined' && PRODUCTOS_CON_SABOR[name]) {
         startFlavorSelection(name, price);
         return;
@@ -29,8 +36,41 @@ function addToCart(name, price) {
     addDirectToCart(name, price);
 }
 
+function esBebidaMichelable(name) {
+    const cervezas = ['Cerveza Andina Light', 'Cerveza Águila Light', 'Cerveza Corona', 'Cerveza Coronita', 'Cerveza Club Colombia'];
+    const sodas = ['Soda Paraíso Cítrico', 'Soda Frutos Rojos', 'Soda Blue Passion'];
+    return cervezas.includes(name) || sodas.includes(name);
+}
+
+function openMicheladoModal() {
+    const modal = document.getElementById('flavor-modal');
+    const flavorsList = document.getElementById('flavors-list');
+    const title = document.getElementById('flavor-title');
+    if (!modal || !flavorsList || !tempProduct) return;
+
+    title.textContent = '¿Deseas michelado? +$2.000';
+    flavorsList.innerHTML = 
+        '<button class="flavor-btn" onclick="selectMichelado(true)">Sí, michelado (+$2.000)</button>' +
+        '<button class="flavor-btn" style="background:#f0f0f0;border-color:#ccc;" onclick="selectMichelado(false)">No, normal</button>';
+
+    modal.classList.add('active');
+}
+
+function selectMichelado(conMichelado) {
+    if (!tempProduct) return;
+    const name = tempProduct.name;
+    const price = tempProduct.price;
+    closeFlavorModal();
+
+    if (conMichelado) {
+        addDirectToCart(name + ' (Michelado)', price + 2000);
+    } else {
+        addDirectToCart(name, price);
+    }
+}
+
 function startFlavorSelection(name, price) {
-    tempProduct = { name: name, price: price };
+    tempProduct = { name: name, price: price, type: 'flavor' };
     flavorCount = PRODUCTOS_CON_SABOR[name];
     selectedFlavors = [];
     openFlavorModal();
@@ -189,34 +229,10 @@ function showToast(msg) {
 function injectAgotadoStyles() {
     const style = document.createElement('style');
     style.textContent = `
-        .btn-agotado {
-            background: #bbb !important;
-            cursor: not-allowed !important;
-            pointer-events: none !important;
-            color: #fff !important;
-        }
-        .producto-agotado {
-            position: relative;
-        }
-        .producto-agotado::after {
-            content: 'AGOTADO';
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: #e63956;
-            color: white;
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 11px;
-            letter-spacing: 1px;
-            z-index: 10;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-        .producto-agotado img {
-            filter: grayscale(60%);
-            opacity: 0.75;
-        }
+        .btn-agotado { background: #bbb !important; cursor: not-allowed !important; pointer-events: none !important; color: #fff !important; }
+        .producto-agotado { position: relative; }
+        .producto-agotado::after { content: 'AGOTADO'; position: absolute; top: 12px; right: 12px; background: #e63956; color: white; padding: 5px 14px; border-radius: 20px; font-weight: bold; font-size: 11px; letter-spacing: 1px; z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        .producto-agotado img { filter: grayscale(60%); opacity: 0.75; }
     `;
     document.head.appendChild(style);
 }
@@ -245,13 +261,6 @@ function applyAvailability() {
         if (allAgotados) card.classList.add('producto-agotado');
     });
 }
-
-document.addEventListener('click', function(e) {
-    const cartModal = document.getElementById('cart-modal');
-    const flavorModal = document.getElementById('flavor-modal');
-    if (cartModal && e.target === cartModal) closeCart();
-    if (flavorModal && e.target === flavorModal) closeFlavorModal();
-});
 
 function initCart() {
     updateCartUI();
