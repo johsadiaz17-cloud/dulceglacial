@@ -50,7 +50,6 @@ code{background:#eee;padding:2px 6px;border-radius:4px;font-family:monospace;}
         <button id="tab-btn-productos" class="tab" onclick="switchTab('productos')">📦 Productos</button>
     </div>
 
-    <!-- TAB SABORES -->
     <div id="tab-sabores">
         <div id="flavors-container"></div>
         <div class="add-row">
@@ -71,7 +70,6 @@ code{background:#eee;padding:2px 6px;border-radius:4px;font-family:monospace;}
         </div>
     </div>
 
-    <!-- TAB PRODUCTOS -->
     <div id="tab-productos" style="display:none;">
         <p class="sub">Marca los productos que estén AGOTADOS</p>
         <input type="text" id="search-input" class="search-box" placeholder="🔍 Buscar producto..." oninput="renderProducts()">
@@ -92,7 +90,6 @@ code{background:#eee;padding:2px 6px;border-radius:4px;font-family:monospace;}
 </div>
 
 <script>
-// ============ SABORES ============
 let flavors = [
     { nombre: "Vainilla", disponible: true },
     { nombre: "Ron con Pasas", disponible: true },
@@ -121,7 +118,6 @@ const PRODUCTOS_SABOR = {
     "Candywaffles": 1
 };
 
-// ============ PRODUCTOS ============
 const PRODUCTOS = {
     "🍨 Helados - Copas y Postres": [
         "Glacial Mango", "Glacial Fresa", "Glacial Banana", "Fusión Chocolate",
@@ -167,11 +163,10 @@ const PRODUCTOS = {
         "Cerveza Coronita", "Like", "Cerveza Club Colombia"
     ],
     "🥤 Bebidas - Limonadas y Otros": [
-        "Botella de Agua", "Limonada Natural", "Cerezada"
+        "Botella de Agua", "Limonada Natural", "Limonada de Coco", "Cerezada"
     ]
 };
 
-// Productos que ofrecen michelado (+$2.000)
 const PRODUCTOS_MICHELADO = [
     "Cerveza Andina Light",
     "Cerveza Águila Light",
@@ -183,14 +178,12 @@ const PRODUCTOS_MICHELADO = [
     "Soda Blue Passion"
 ];
 
-// Cargar estado guardado
 let agotados = [];
 const savedFlavors = localStorage.getItem('adminFlavors');
 if (savedFlavors) { try { flavors = JSON.parse(savedFlavors); } catch(e) {} }
 const savedAgotados = localStorage.getItem('adminAgotados');
 if (savedAgotados) { try { agotados = JSON.parse(savedAgotados); } catch(e) {} }
 
-// ============ TABS ============
 function switchTab(tab) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.getElementById('tab-btn-' + tab).classList.add('active');
@@ -198,7 +191,6 @@ function switchTab(tab) {
     document.getElementById('tab-productos').style.display = tab === 'productos' ? 'block' : 'none';
 }
 
-// ============ SABORES RENDER ============
 function renderFlavors() {
     const container = document.getElementById('flavors-container');
     if (flavors.length === 0) {
@@ -242,7 +234,6 @@ function addFlavor() {
     renderFlavors();
 }
 
-// ============ PRODUCTOS RENDER ============
 function renderProducts() {
     const container = document.getElementById('products-container');
     const search = (document.getElementById('search-input').value || '').toLowerCase();
@@ -271,7 +262,6 @@ function toggleProduct(name) {
     renderProducts();
 }
 
-// ============ GENERAR CÓDIGO ============
 function generateFlavorsCode() {
     const code = '// ========================================\n' +
 '// CONFIGURACIÓN DE SABORES - DULCE GLACIAL\n' +
