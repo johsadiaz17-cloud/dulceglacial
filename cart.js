@@ -11,7 +11,17 @@ function saveCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+function isAgotado(name) {
+    if (typeof AGOTADOS === 'undefined') return false;
+    const baseName = name.replace(/\s*\([^)]*\)\s*$/, '').trim();
+    return AGOTADOS.includes(name) || AGOTADOS.includes(baseName);
+}
+
 function addToCart(name, price) {
+    if (isAgotado(name)) {
+        showToast('Este producto está agotado 🚫');
+        return;
+    }
     if (typeof PRODUCTOS_CON_SABOR !== 'undefined' && PRODUCTOS_CON_SABOR[name]) {
         startFlavorSelection(name, price);
         return;
@@ -74,9 +84,8 @@ function selectFlavor(flavor) {
     selectedFlavors.push(flavor);
     
     if (selectedFlavors.length >= flavorCount) {
-        const flavorStr = selectedFlavors.join(', ');
         const product = tempProduct;
-        const flavors = selectedFlavors.slice();
+        const flavorStr = selectedFlavors.join(', ');
         closeFlavorModal();
         addDirectToCart(product.name, product.price, flavorStr);
     } else {
@@ -176,6 +185,67 @@ function showToast(msg) {
     setTimeout(() => t.classList.remove('show'), 2000);
 }
 
+// ============ APLICAR AGOTADOS ============
+function injectAgotadoStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        .btn-agotado {
+            background: #bbb !important;
+            cursor: not-allowed !important;
+            pointer-events: none !important;
+            color: #fff !important;
+        }
+        .producto-agotado {
+            position: relative;
+        }
+        .producto-agotado::after {
+            content: 'AGOTADO';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #e63956;
+            color: white;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 11px;
+            letter-spacing: 1px;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .producto-agotado img {
+            filter: grayscale(60%);
+            opacity: 0.75;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+function applyAvailability() {
+    if (typeof AGOTADOS === 'undefined') return;
+    document.querySelectorAll('.card').forEach(card => {
+        const buttons = card.querySelectorAll('.btn-agregar');
+        if (buttons.length === 0) return;
+        let allAgotados = true;
+        
+        buttons.forEach(btn => {
+            const onclick = btn.getAttribute('onclick') || '';
+            const match = onclick.match(/addToCart\('([^']+)'/);
+            if (!match) { allAgotados = false; return; }
+            const name = match[1];
+            if (AGOTADOS.includes(name)) {
+                btn.disabled = true;
+                btn.classList.add('btn-agotado');
+                btn.textContent = '🚫 Agotado';
+            } else {
+                allAgotados = false;
+            }
+        });
+        
+        if (allAgotados) card.classList.add('producto-agotado');
+    });
+}
+
 document.addEventListener('click', function(e) {
     const cartModal = document.getElementById('cart-modal');
     const flavorModal = document.getElementById('flavor-modal');
@@ -183,4 +253,8 @@ document.addEventListener('click', function(e) {
     if (flavorModal && e.target === flavorModal) closeFlavorModal();
 });
 
-document.addEventListener('DOMContentLoaded', updateCartUI);
+document.addEventListener('DOMContentLoaded', function() {
+    updateCartUI();
+    injectAgotadoStyles();
+    applyAvailability();
+});
