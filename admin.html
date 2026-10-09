@@ -74,6 +74,21 @@ let flavors = [
     { nombre: "Melocotón", disponible: true }
 ];
 
+const PRODUCTOS_SABOR = {
+    "Cono 1 bola": 1,
+    "Cono 2 bolas": 2,
+    "Pulpito": 1,
+    "Buhito": 1,
+    "Gusanito": 3,
+    "Brownie con Helado": 2,
+    "Banana Split": 3,
+    "Frutiglacial Pequeña": 1,
+    "Frutiglacial Grande": 2,
+    "Fresabanana": 1,
+    "Waffle Tentación": 2,
+    "Candywaffles": 1
+};
+
 const saved = localStorage.getItem('adminFlavors');
 if (saved) { try { flavors = JSON.parse(saved); } catch(e) {} }
 
@@ -123,7 +138,7 @@ function generateCode() {
 '// CONFIGURACIÓN DE SABORES - DULCE GLACIAL\n' +
 '// ========================================\n\n' +
 'const SABORES = ' + JSON.stringify(flavors, null, 4) + ';\n\n' +
-'const PRODUCTOS_CON_SABOR = [\n    "Cono 1 bola",\n    "Cono 2 bolas"\n];\n';
+'const PRODUCTOS_CON_SABOR = ' + JSON.stringify(PRODUCTOS_SABOR, null, 4) + ';\n';
     const out = document.getElementById('output');
     out.textContent = code;
     out.classList.add('show');
