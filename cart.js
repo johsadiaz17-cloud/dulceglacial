@@ -18,6 +18,7 @@ function isAgotado(name) {
 }
 
 function esBebidaMichelable(name) {
+    if (typeof PRODUCTOS_MICHELADO === 'undefined') return false;
     return PRODUCTOS_MICHELADO.includes(name);
 }
 
