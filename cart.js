@@ -253,8 +253,14 @@ document.addEventListener('click', function(e) {
     if (flavorModal && e.target === flavorModal) closeFlavorModal();
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+function initCart() {
     updateCartUI();
     injectAgotadoStyles();
     applyAvailability();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCart);
+} else {
+    initCart();
+}
