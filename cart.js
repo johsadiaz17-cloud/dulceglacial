@@ -7,18 +7,6 @@ let tempProduct = null;
 let flavorCount = 0;
 let selectedFlavors = [];
 
-// Cervezas y sodas que ofrecen michelado (+$2.000)
-const PRODUCTOS_MICHELADO = [
-    "Cerveza Andina Light",
-    "Cerveza Águila Light",
-    "Cerveza Corona",
-    "Cerveza Coronita",
-    "Cerveza Club Colombia",
-    "Soda Paraíso Cítrico",
-    "Soda Frutos Rojos",
-    "Soda Blue Passion"
-];
-
 function saveCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
