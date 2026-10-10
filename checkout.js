@@ -246,22 +246,22 @@ function calcularPedido() {
 function checkoutEnviarWhatsApp() {
     const r = calcularPedido();
     const phone = '573014494093';
-    let message = '¡Hola Dulce Glacial! 🍦\n\n';
-    message += '📋 *Mi pedido:*\n';
+    let message = 'Hola Dulce Glacial!\n\n';
+    message += 'Mi pedido:\n';
     r.items.forEach(i => {
-        message += '• ' + i.qty + 'x ' + i.name + ' — $' + i.lineTotal.toLocaleString('es-CO') + '\n';
+        message += '- ' + i.qty + 'x ' + i.name + ' - $' + i.lineTotal.toLocaleString('es-CO') + '\n';
     });
-    message += '\n*Subtotal: $' + r.subtotal.toLocaleString('es-CO') + '*\n';
+    message += '\nSubtotal: $' + r.subtotal.toLocaleString('es-CO') + '\n';
     if (r.domicilio > 0) message += 'Domicilio: $' + r.domicilio.toLocaleString('es-CO') + '\n';
     if (r.desechable > 0) message += 'Desechables: $' + r.desechable.toLocaleString('es-CO') + '\n';
-    message += '\n💰 *TOTAL: $' + r.total.toLocaleString('es-CO') + '*\n\n';
+    message += '\nTOTAL: $' + r.total.toLocaleString('es-CO') + '\n\n';
     if (r.delivery) {
-        message += '🛵 *Entrega a domicilio*\n';
-        message += '📍 Dirección: ' + r.direccion + '\n';
-        if (r.conosJuntas === true) message += '_(Conos con todas las bolas juntas)_\n';
-        if (r.conosJuntas === false) message += '_(Conos con bolas separadas)_\n';
+        message += 'Entrega a domicilio\n';
+        message += 'Direccion: ' + r.direccion + '\n';
+        if (r.conosJuntas === true) message += '(Conos con todas las bolas juntas)\n';
+        if (r.conosJuntas === false) message += '(Conos con bolas separadas)\n';
     } else if (r.mesa) {
-        message += '🍽️ *Mesa #' + r.mesa + '*\n';
+        message += 'Mesa #' + r.mesa + '\n';
     }
     window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(message), '_blank');
 
