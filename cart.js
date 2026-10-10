@@ -223,12 +223,12 @@ function sendOrder() {
     }
     // Fallback: envío directo sin checkout
     const phone = '573014494093';
-    let message = '¡Hola Dulce Glacial! 🍦\nQuiero hacer el siguiente pedido:\n\n';
+    let message = 'Hola Dulce Glacial!\nQuiero hacer el siguiente pedido:\n\n';
     cart.forEach(item => {
-        message += '• ' + item.qty + 'x ' + item.name + ' — $' + (item.price * item.qty).toLocaleString('es-CO') + '\n';
+        message += '- ' + item.qty + 'x ' + item.name + ' - $' + (item.price * item.qty).toLocaleString('es-CO') + '\n';
     });
     const total = cart.reduce((s, i) => s + i.qty * i.price, 0);
-    message += '\n*Total: $' + total.toLocaleString('es-CO') + '*';
+    message += '\nTotal: $' + total.toLocaleString('es-CO');
     window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(message), '_blank');
 }
 
