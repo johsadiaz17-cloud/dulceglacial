@@ -265,7 +265,6 @@ function checkoutEnviarWhatsApp() {
     }
     window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(message), '_blank');
 
-    // Limpiar carrito
     cart = [];
     saveCart();
     updateCartUI();
