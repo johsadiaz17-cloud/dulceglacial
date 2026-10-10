@@ -12,7 +12,7 @@ const LISTA_DESECHABLE = [
     "Hamburguesa", "Hamburguesa Especial", "Hamburguesa de Pollo",
     "Perro Súper", "Chorriperro", "Perro Sencillo",
     "Picada Especial Personal", "Picada Especial Para dos", "Picada Especial Familiar",
-    "Picada para Compartir Personal", "Picada para Compartir Para dos", "Picada para Compartir Familiar",
+     "Picada Personal", "Picada Para dos", "Picada Familiar",
     "Choricascos", "Pechuga a la Plancha", "Pechuga Gratinada",
     "Salchipapa Personal", "Choripapa Personal"
 ];
