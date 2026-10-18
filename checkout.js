@@ -1,7 +1,6 @@
 // ========================================
 // CHECKOUT - DULCE GLACIAL
 // ========================================
-// Sistema de domicilio, mesa, desechables y dirección
 
 const LISTA_DESECHABLE = [
     "Glacial Mango", "Glacial Fresa", "Glacial Banana", "Fusión Chocolate",
@@ -9,12 +8,7 @@ const LISTA_DESECHABLE = [
     "Copa Milo", "Gusanito", "Buhito", "Pulpito",
     "Frutiglacial Grande", "Frutiglacial Pequeña", "Fresabanana",
     "Waffle Tentación", "Candywaffles",
-    "Hamburguesa", "Hamburguesa Especial", "Hamburguesa de Pollo",
-    "Perro Súper", "Chorriperro", "Perro Sencillo",
-    "Picada Especial Personal", "Picada Especial Para dos", "Picada Especial Familiar",
-     "Picada Personal", "Picada Para dos", "Picada Familiar",
-    "Choricascos", "Pechuga a la Plancha", "Pechuga Gratinada",
-    "Salchipapa Personal", "Choripapa Personal"
+    "Malteada Celestial de Café", "Malteada de Fresa", "Malteada de Chocolate"
 ];
 
 let checkoutState = {
@@ -25,7 +19,6 @@ let checkoutState = {
     direccion: ''
 };
 
-// ============ INICIALIZAR ============
 function initCheckout() {
     if (document.getElementById('checkout-modal')) return;
 
@@ -68,7 +61,6 @@ function initCheckout() {
     document.body.appendChild(div.firstElementChild);
 }
 
-// ============ ABRIR MODAL ============
 function openCheckout() {
     checkoutState = { step: 'choose', delivery: null, conosJuntas: null, mesa: null, direccion: '' };
     initCheckout();
@@ -84,7 +76,6 @@ function closeCheckoutModal() {
     if (modal) modal.classList.remove('active');
 }
 
-// ============ UTILIDADES ============
 function contarConos() {
     let units = 0, balls = 0;
     cart.forEach(item => {
@@ -99,7 +90,6 @@ function esProductoDesechable(name) {
     return LISTA_DESECHABLE.includes(name) || LISTA_DESECHABLE.includes(base);
 }
 
-// ============ RENDERIZAR PASO ============
 function renderCheckoutStep() {
     const title = document.getElementById('checkout-title');
     const body = document.getElementById('checkout-body');
@@ -131,7 +121,7 @@ function renderCheckoutStep() {
         title.textContent = '📍 Escribe tu dirección';
         body.innerHTML =
             '<p class="checkout-info">Escribe tu dirección completa para la entrega</p>' +
-            '<textarea id="address-input" class="address-input" placeholder="Ej: Calle 12 #34-56, Barrio Centro, Casa blanca de 2 pisos..." rows="4"></textarea>' +
+            '<textarea id="address-input" class="address-input" placeholder="Ej: Calle 12 #34-56, Barrio Centro..." rows="4"></textarea>' +
             '<button class="checkout-btn" style="margin-top:15px;" onclick="checkoutConfirmAddress()">Continuar ➡️</button>';
 
     } else if (checkoutState.step === 'confirm') {
@@ -139,13 +129,13 @@ function renderCheckoutStep() {
         title.textContent = 'Confirmar pedido';
         let html = '<div class="checkout-resumen">';
         r.items.forEach(i => {
-            html += '<div>' + i.qty + 'x ' + i.name + ' — $' + i.lineTotal.toLocaleString('es-CO') + '</div>';
+            html += '<div>' + i.qty + 'x ' + i.name + ' - $' + i.lineTotal.toLocaleString('es-CO') + '</div>';
         });
         html += '<div style="margin-top:10px;"><strong>Subtotal:</strong> $' + r.subtotal.toLocaleString('es-CO') + '</div>';
         if (r.domicilio > 0) html += '<div><strong>Domicilio:</strong> $' + r.domicilio.toLocaleString('es-CO') + '</div>';
         if (r.desechable > 0) html += '<div><strong>Desechables:</strong> $' + r.desechable.toLocaleString('es-CO') + '</div>';
-        if (r.delivery && r.direccion) html += '<div style="margin-top:8px;"><strong>🛵 Dirección:</strong><br>' + r.direccion + '</div>';
-        if (r.mesa) html += '<div style="margin-top:8px;"><strong>🍽️ Mesa:</strong> ' + r.mesa + '</div>';
+        if (r.delivery && r.direccion) html += '<div style="margin-top:8px;"><strong>Direccion:</strong><br>' + r.direccion + '</div>';
+        if (r.mesa) html += '<div style="margin-top:8px;"><strong>Mesa:</strong> ' + r.mesa + '</div>';
         html += '<div class="total-line"><span>TOTAL:</span><span>$' + r.total.toLocaleString('es-CO') + '</span></div>';
         html += '</div>';
         html += '<button class="checkout-btn" style="margin-top:15px;" onclick="checkoutEnviarWhatsApp()">📲 Enviar por WhatsApp</button>';
@@ -153,7 +143,6 @@ function renderCheckoutStep() {
     }
 }
 
-// ============ NAVEGACIÓN ============
 function checkoutSelectDelivery(isDelivery) {
     checkoutState.delivery = isDelivery;
     if (isDelivery && contarConos().units > 0) {
@@ -182,7 +171,7 @@ function checkoutConfirmAddress() {
     const input = document.getElementById('address-input');
     const dir = (input ? input.value : '').trim();
     if (!dir) {
-        alert('Por favor escribe tu dirección');
+        alert('Por favor escribe tu direccion');
         return;
     }
     checkoutState.direccion = dir;
@@ -190,7 +179,6 @@ function checkoutConfirmAddress() {
     renderCheckoutStep();
 }
 
-// ============ CÁLCULO ============
 function calcularPedido() {
     let items = [], subtotal = 0, domicilio = 0, desechable = 0;
 
@@ -203,19 +191,18 @@ function calcularPedido() {
     const conos = contarConos();
 
     if (checkoutState.delivery) {
-        let hasSpecialOrCono = false;
+        // Domicilio siempre se cobra si elige a domicilio
+        domicilio = 500;
+        
+        // Desechables solo si hay productos de la lista o conos
         let specialUnits = 0;
-
         cart.forEach(item => {
             if (esProductoDesechable(item.name)) {
-                hasSpecialOrCono = true;
                 specialUnits += item.qty;
             }
-            if (item.name.startsWith('Cono')) hasSpecialOrCono = true;
         });
 
-        if (hasSpecialOrCono) {
-            domicilio = 500;
+        if (specialUnits > 0 || conos.units > 0) {
             desechable = specialUnits * 500;
 
             if (conos.units > 0) {
@@ -242,7 +229,6 @@ function calcularPedido() {
     };
 }
 
-// ============ ENVIAR WHATSAPP ============
 function checkoutEnviarWhatsApp() {
     const r = calcularPedido();
     const phone = '573014494093';
@@ -273,13 +259,11 @@ function checkoutEnviarWhatsApp() {
     closeCart();
 }
 
-// Cerrar modal si clic fuera
 document.addEventListener('click', function(e) {
     const modal = document.getElementById('checkout-modal');
     if (modal && e.target === modal) closeCheckoutModal();
 });
 
-// Auto-inicializar
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initCheckout);
 } else {
